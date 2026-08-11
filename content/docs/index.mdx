@@ -1,31 +1,32 @@
 ---
-title: Hello World
-description: Your favourite docs framework.
-icon: Rocket
+title: Overview
+description: A mental model for making AI usage in software development structured, observable and improvable.
 ---
 
-Hey there! Fumadocs is the docs framework that also works on Tanstack Start!
+Using AI through ad-hoc prompts and undocumented conventions is difficult to systematise. Even though AI is probabilistic, its behaviour is usually constrained enough that we can establish repeatable patterns around how it is used.
 
-## Heading
+This framework provides Aureian's mental model for working with AI in software development.
 
-Hello World!
+The goal is to make AI usage structured, observable and improvable.
 
-<Cards>
-  <Card title="Learn more about Tanstack Start" href="https://tanstack.com/start" />
-  <Card title="Learn more about Fumadocs" href="https://fumadocs.dev" />
-</Cards>
+Instead of solving every problem with increasingly specific prompts, we establish a system around the AI:
 
-### CodeBlock
+- give it a defined entry point
+- provide structured project context
+- establish shared terminology
+- document architectural decisions
+- make requirements and research discoverable
+- observe where the system fails
+- update the context when problems are identified
 
-```ts
-console.log('Hello World');
-```
+This allows problems with AI-assisted development to be treated as engineering problems rather than solved through prompt-by-prompt improvisation.
 
-#### Table
+The framework can therefore evolve as we learn what works, where agents make mistakes, and what additional context or structure is required.
 
-| Head                            | Description                         |
-| ------------------------------- | ----------------------------------- |
-| `hello`                         | Hello World                         |
-| very **important**              | Hey                                 |
-| _Surprisingly_                  | Fumadocs                            |
-| very long text that looks weird | hello world hello world hello world |
+We also accept that AI remains probabilistic.
+
+There will always be an element of the slot machine: the same input can sometimes produce different results, and an agent can occasionally make an unexpected decision even when the available context is correct.
+
+The goal is not to eliminate that uncertainty. The goal is to reduce how much of our software development depends on it.
+
+Instead of hoping the right prompt produces the right result, we build enough structure around the agent that its behaviour becomes more predictable, its failures become visible, and those failures can be systematically addressed.
