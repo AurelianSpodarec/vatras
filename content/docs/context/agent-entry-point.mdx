@@ -1,5 +1,41 @@
 ---
 title: Agent Entry Point
-description: The defined starting point an agent reads before doing any work.
+description: The first place an AI agent looks when working in a repository.
 ---
 
+The agent entry point is the first place an AI agent looks when working in a repository.
+
+`AGENTS.md` is the standard repository-level instruction file used by AI coding agents. Individual agents may also support their own instruction files, such as `CLAUDE.md`.
+
+The entry point gives the agent an initial mental model of the repository and directs it towards the project's deeper context.
+
+It should tell the agent:
+
+- where project knowledge lives
+- how the repository is organised
+- which documents are authoritative
+- where to find architecture, requirements, decisions, research and domain knowledge
+
+It is not the project's entire context. It is the starting point from which the agent discovers that context.
+
+```text
+AI Agent
+   ↓
+AGENTS.md / CLAUDE.md
+   ↓
+Project Context
+   ↓
+Codebase
+```
+
+## Initialise
+
+`vatras:init` establishes the initial agent entry point for a repository.
+
+```text
+vatras:init
+```
+
+It creates the initial agent instructions and `/docs` structure, providing the starting point for building the project's Context Architecture.
+
+The agent entry point is the door into the project. [Context Architecture](/docs/context/context-architecture) is what lies beyond it.
