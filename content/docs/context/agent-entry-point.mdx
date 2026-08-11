@@ -30,12 +30,18 @@ Codebase
 
 ## Initialise
 
-`vatras:init` establishes the initial agent entry point for a repository.
+`vatras:init` creates the initial AI development surface for a repository:
 
-```text
-vatras:init
-```
+<Files>
+  <File name="AGENTS.md" />
+  <File name="CLAUDE.md" />
+  <Folder name="docs" defaultOpen />
+</Files>
 
-It creates the initial agent instructions and `/docs` structure, providing the starting point for building the project's Context Architecture.
+`AGENTS.md` provides the shared repository-level entry point. `CLAUDE.md` can direct Claude Code to follow it, keeping the repository's agent instructions consistent.
+
+The `/docs` directory is the starting point for the project's Context Architecture.
+
+`vatras:init` establishes the structure. The subsequent Vatras workflow fills it with project knowledge.
 
 The agent entry point is the door into the project. [Context Architecture](/docs/context/context-architecture) is what lies beyond it.
