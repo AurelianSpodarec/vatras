@@ -1,5 +1,32 @@
 ---
 title: Context Architecture
-description: How project context is structured so it is discoverable and maintainable.
+description: The structure of persistent knowledge that lets an AI agent understand and work on a project.
 ---
 
+Context Architecture is the structure of persistent knowledge around a codebase that allows an AI agent to understand and work on the project.
+
+The context architecture lives alongside the codebase and provides the knowledge the agent needs beyond the source code itself.
+
+```text
+/docs
+├── ...
+├── ...
+└── ...
+```
+
+The structure is not a fixed documentation template. It should reflect the knowledge required to understand, change and maintain the project.
+
+This can include:
+
+- project and domain knowledge
+- architecture
+- requirements
+- research
+- decisions
+- plans
+- implementation context
+- other persistent knowledge needed by the project
+
+The purpose is not to document everything.
+
+The purpose is to make the right knowledge discoverable and persistent for the agent.
