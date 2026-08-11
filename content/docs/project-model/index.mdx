@@ -1,0 +1,61 @@
+---
+title: Overview
+description: The structured understanding of a software project that an AI agent uses to reason about the work.
+---
+
+A Project Model is the structured understanding of a software project that an AI agent uses to reason about the work.
+
+A codebase contains the implementation, but much of the knowledge needed to work on it is not directly represented in the code. The Project Model captures that knowledge.
+
+It describes things such as:
+
+- what the project is and why it exists
+- the important concepts in the system
+- how those concepts relate
+- the boundaries of the system
+- the terminology used by the project
+- what is known, assumed, or still unresolved
+
+The model is not a single document. It is an understanding of the project that is developed, challenged, and progressively recorded in the project's [Context Architecture](/docs/context/context-architecture).
+
+## Building the model
+
+A Project Model is developed through several activities:
+
+### Idealisation
+
+Form an initial model of the project from the available evidence.
+
+### Vocabulary
+
+Define the terms and concepts that have specific meaning within the project.
+
+### Research
+
+Investigate questions where the existing project knowledge is insufficient.
+
+### Grilling
+
+Challenge the current model to expose assumptions, contradictions, and gaps.
+
+These activities are iterative rather than strictly linear.
+
+```text
+             Project Model
+                   │
+        ┌──────────┼──────────┐
+        ↓          ↓          ↓
+   Idealisation Vocabulary Research
+        │          │          │
+        └──────→ Grilling ←───┘
+                   │
+                   ↓
+            Refined Model
+                   │
+                   ↓
+          Persistent Context
+```
+
+The goal is not to create a perfect model before development begins.
+
+The goal is to make the project's important knowledge explicit enough for an AI agent to reason from, while making uncertainty visible so it can be investigated rather than silently invented.

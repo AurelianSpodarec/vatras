@@ -1,5 +1,5 @@
 {
   "title": "Context",
   "defaultOpen": true,
-  "pages": ["agent-entry-point", "context-architecture"]
+  "pages": ["index", "agent-entry-point", "context-architecture"]
 }

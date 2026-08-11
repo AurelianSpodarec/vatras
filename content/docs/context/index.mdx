@@ -1,0 +1,29 @@
+---
+title: Overview
+description: How an AI agent enters and understands a repository.
+---
+
+An AI agent needs more than the codebase to work effectively on a project.
+
+It needs to know where to start, where project knowledge lives, and which information it can rely on.
+
+Vatras separates this into two parts:
+
+- [Agent Entry Point](/docs/context/agent-entry-point) — the starting point for an AI agent working in a repository.
+- [Context Architecture](/docs/context/context-architecture) — the structure used to organise persistent project knowledge.
+
+```text
+AI Agent
+    ↓
+Agent Entry Point
+    ↓
+Context Architecture
+    ↓
+Project Model
+    ↓
+Codebase
+```
+
+The entry point gets the agent into the project.
+
+The context architecture gives it the knowledge it needs to work within it.
