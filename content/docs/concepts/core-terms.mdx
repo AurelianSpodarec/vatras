@@ -1,44 +1,52 @@
 ---
 title: Core Terms
-description: The core concepts and terminology used by Vatras.
+description: The kinds of thing Vatras is made of, and how to tell them apart.
 ---
-
-Vatras keeps inventing concepts. Without a small set of agreed kinds, each new
-one gets named on the spot, and the same argument happens again the next time.
-
-This page defines the kinds. It does not explain how each one works — the
-sections that follow do that. It exists so a new concept can be placed rather
-than debated from scratch.
 
 ## Two kinds of thing
 
-There are only two: knowledge that persists, and work that happens to it.
+Everything Vatras deals with is either knowledge that persists or work that
+happens to it.
 
-Everything else refines one of those, or sits on the seam between them.
+One term sits on the seam between them.
 
 ```text
 Knowledge that persists          Work that happens to it
         │                                  │
-    Artefact                           Operation
-    Context                            Primitive
+    Context                            Operation
+    Artefact                           Primitive
     Vocabulary                         Methodology
         │                                  │
         └───────────── Skill ──────────────┘
 ```
 
-| Term | Answers |
+| Term | Meaning |
 | ---- | ------- |
-| **Artefact** | What knowledge should persist? |
-| **Context** | What does the agent load, and when? |
-| **Vocabulary** | What do these terms mean in this project? |
-| **Operation** | What are we doing? |
-| **Primitive** | Which operations does the methodology keep returning to? |
-| **Methodology** | How do these fit together? |
-| **Skill** | How does an agent perform an operation? |
+| **Context** | Everything an agent can draw on, and what gets loaded when |
+| **Artefact** | Knowledge that persists and is acted on |
+| **Vocabulary** | The shared language of a project |
+| **Operation** | Something done to project knowledge |
+| **Primitive** | An operation that recurs across unrelated work |
+| **Methodology** | How operations arrange into a process |
+| **Skill** | An artefact that encodes an operation |
+
+Each term below says what kind of thing something is. How each one works
+belongs to its own section.
 
 ---
 
 ## Knowledge that persists
+
+### Context
+
+Everything an agent can draw on to understand a project, and the discipline of
+what gets loaded when.
+
+Some context persists between sessions — that is what artefacts are. Some is
+supplied for one piece of work and gone afterwards.
+
+Not all of it is loaded the same way. Most is read once it becomes relevant to
+the work in hand. See [Context](/docs/context) for how that is organised.
 
 ### Artefact
 
@@ -59,17 +67,6 @@ file is an artefact in its own right; the directory holding them is not.
 **Where it stops.** Source code is not an artefact. Code is what artefacts are
 *about*. Without that boundary, "knowledge that persists" swallows the entire
 repository and stops meaning anything.
-
-### Context
-
-Everything an agent can draw on to understand a project, and the discipline of
-what gets loaded when.
-
-Some context persists between sessions — that is what artefacts are. Some is
-supplied for one piece of work and gone afterwards.
-
-Not all of it is loaded the same way. Most is read once it becomes relevant to
-the work in hand. See [Context](/docs/context) for how that is organised.
 
 ### Vocabulary
 

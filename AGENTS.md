@@ -46,6 +46,11 @@ work, and before deciding what else to read.
 compressed form loaded on every operation. When the two disagree, the
 documentation is correct and the vocabulary needs updating.
 
+The two are ordered differently on purpose. `VOCABULARY.md` is alphabetical,
+because it is scanned for a single word and a new term needs an obvious place
+to go. The documentation is in dependency order, because it is read through.
+Do not sync one order to the other.
+
 ## Repository layout
 
 ```text

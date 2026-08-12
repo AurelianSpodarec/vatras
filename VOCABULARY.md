@@ -31,9 +31,8 @@ an agent loads it.
 _Avoid_: documentation, knowledge base
 
 **Methodology**:
-The overall way Vatras approaches AI-assisted software development: the
-principles, stages and relationships between operations, rather than any
-particular skill.
+The way operations arrange into a process: their order, what feeds what, and
+the principles governing the whole. Not a step and not a skill.
 
 **Model Interrogation**:
 The operation of deliberately challenging the current **Project Model** to
@@ -41,7 +40,7 @@ expose assumptions, contradictions and gaps.
 _Avoid_: grilling, elicitation, interrogation, model refinement, discovery
 
 **Operation**:
-A way of working with project knowledge. An operation may create, inspect,
+Something done to project knowledge. An operation may create, inspect,
 challenge, transform or verify artefacts.
 
 **Primitive**:
