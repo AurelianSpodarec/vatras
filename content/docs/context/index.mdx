@@ -27,3 +27,17 @@ Codebase
 The entry point gets the agent into the project.
 
 The context architecture gives it the knowledge it needs to work within it.
+
+## Vocabulary
+
+Not all of that knowledge is loaded the same way. Most of it is read when it becomes relevant to the work in hand.
+
+[Vocabulary](/docs/context/vocabulary) is the exception. It lives at the root of the repository and is read before the work starts, on every operation, whatever the topic. An agent cannot judge which decisions or research matter to a piece of work until it knows what the words mean.
+
+```text
+Context Architecture
+    ├── Vocabulary        read on every operation
+    └── Everything else   read when it becomes relevant
+```
+
+Vocabulary is one part of the context architecture, and the part that is always in scope.
