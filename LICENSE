@@ -20,8 +20,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
----
+-------------------------------------------------------------------------------
 
-The published documentation under `content/docs/` is licensed separately, under
-the Creative Commons Attribution 4.0 International License. See
-[content/docs/LICENSE](content/docs/LICENSE).
+The published documentation under content/docs/ is licensed separately, under
+the Creative Commons Attribution 4.0 International License. See the LICENSE
+file in that directory.
