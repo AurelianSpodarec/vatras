@@ -1,5 +1,5 @@
 {
   "title": "Primitives",
   "defaultOpen": true,
-  "pages": ["grill"]
+  "pages": ["index", "exploration", "ideation", "model-interrogation"]
 }
