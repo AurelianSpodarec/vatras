@@ -12,6 +12,26 @@ name, agents have to reconstruct that meaning repeatedly.
 
 A persistent vocabulary gives the project a shared language.
 
+## Always in scope
+
+Every project has one vocabulary, and it lives at the root of the repository.
+
+Unlike the rest of a project's context, it is not fetched when it becomes
+relevant. It is read before the work starts, on every operation, whatever the
+topic. An agent cannot judge which decisions or research matter until it knows
+what the words mean.
+
+That makes the vocabulary the first thing an agent loads, and the one piece of
+context that should grow most slowly.
+
+Because it is in scope for everything, its cost is paid every time. A
+vocabulary that absorbs every term in the repository stops being cheap to
+load, and an agent reading three hundred definitions to answer a small
+question is carrying knowledge it has no use for.
+
+The exclusions below are not tidiness. They are what keeps the vocabulary
+small enough to stay loaded.
+
 ## What belongs in the vocabulary
 
 Vocabulary should contain terms that have a specific meaning within the
@@ -41,6 +61,29 @@ Vocabulary is not:
 
 The purpose is to establish **shared language**, not to document everything.
 
+## Recording a term
+
+A term is recorded with its canonical name, a short definition, and the
+alternatives it replaces.
+
+```text
+**Agent Entry Point**:
+The first file an AI agent reads when working in a repository.
+_Avoid_: agent instructions, agent config
+```
+
+Keep the definition to a sentence or two, and say what the term is rather than
+what it does.
+
+The rejected alternatives carry as much weight as the definition. Without
+them a vocabulary states a preference. With them it states a rule, and a drift
+back to an abandoned synonym becomes visible.
+
+When a collision is resolved — two words that turned out to mean one thing, or
+one word that turned out to mean two — record the resolution alongside the
+outcome. Otherwise the same ambiguity is rediscovered later and argued from
+the beginning.
+
 ## Vocabulary emerges through development
 
 A vocabulary does not need to be designed completely at project initiation.
@@ -68,6 +111,21 @@ Vocabulary updated
     ↓
 Future work uses the shared term
 ```
+
+## Changing a term
+
+A vocabulary can be reshaped, and sometimes should be. A term that looked
+right early can turn out to be wrong once the project understands itself
+better.
+
+Reshaping carries a cost that no other project knowledge does. Vocabulary is
+the only context whose change invalidates other context: rename a concept and
+every decision, plan and research note using the old word is quietly stale.
+Nothing announces it. Those documents still read as though they are current.
+
+Changing an established term is therefore not an edit to one file. It is a
+change to everything downstream that used it, and the vocabulary should record
+what moved.
 
 ## AI and vocabulary
 
