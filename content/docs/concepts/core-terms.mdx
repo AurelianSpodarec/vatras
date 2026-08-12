@@ -1,0 +1,155 @@
+---
+title: Core Terms
+description: The core concepts and terminology used by Vatras.
+---
+
+Vatras uses a small set of terms to describe how AI-assisted software
+development is organised.
+
+These terms describe different kinds of things and should not be used
+interchangeably.
+
+## Artifact
+
+A persistent piece of project knowledge.
+
+Examples include vocabulary, research, decisions, requirements and
+specifications.
+
+An artifact answers:
+
+> What knowledge should persist?
+
+---
+
+## Operation
+
+A way of working with project knowledge.
+
+An operation may create, inspect, challenge, transform or verify artifacts.
+
+An operation answers:
+
+> What are we doing?
+
+---
+
+## Skill
+
+An executable AI workflow that performs an operation.
+
+A skill is the mechanism through which an AI agent carries out a particular
+way of working.
+
+A skill answers:
+
+> How does the agent perform this operation?
+
+---
+
+## Primitive
+
+A fundamental building block of the Vatras methodology.
+
+Primitives are reusable patterns of reasoning or development that can appear
+inside multiple skills and workflows.
+
+A primitive answers:
+
+> What fundamental capability are we building upon?
+
+The exact set of Vatras primitives is still being discovered.
+
+---
+
+## Context
+
+Information an AI agent can use to understand and work within a project.
+
+Context may be persistent or supplied during a particular piece of work.
+
+Context is the broader concept; individual artifacts can provide persistent
+context.
+
+---
+
+## Vocabulary
+
+The shared language of a project.
+
+Vocabulary is a type of persistent project knowledge and may therefore be
+represented by a `VOCABULARY.md` artifact.
+
+Vocabulary answers:
+
+> What do these terms mean in this project?
+
+---
+
+## Methodology
+
+The overall way Vatras approaches AI-assisted software development.
+
+Methodology describes the principles, stages and relationships between
+operations rather than a particular skill.
+
+Methodology answers:
+
+> How do these activities fit together?
+
+---
+
+## Skill vs Operation
+
+These terms are related but not synonymous.
+
+An operation describes the activity.
+
+A skill is an implementation of that activity for an AI agent.
+
+```text
+Operation
+    ↓
+Skill
+    ↓
+AI agent
+```
+
+## Artifact vs Document
+
+A document is a format for presenting or storing information.
+
+An artifact is a piece of persistent project knowledge.
+
+Not every document is an artifact, and an artifact does not necessarily need to
+be a particular document format.
+
+For example:
+
+```text
+VOCABULARY.md
+    ↓
+Artifact containing project vocabulary
+
+vocabulary.mdx
+    ↓
+Documentation explaining the artifact
+```
+
+## Terminology is part of the system
+
+These definitions are themselves subject to refinement.
+
+When Vatras introduces a new concept, it should be clear whether that concept
+is:
+
+- an artifact
+- an operation
+- a skill
+- a primitive
+- context
+- documentation
+- or part of the methodology
+
+The terminology should evolve from actual use rather than being defined
+completely in advance.
