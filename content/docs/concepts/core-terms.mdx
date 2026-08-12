@@ -3,109 +3,138 @@ title: Core Terms
 description: The core concepts and terminology used by Vatras.
 ---
 
-Vatras uses a small set of terms to describe how AI-assisted software
-development is organised.
+Vatras keeps inventing concepts. Without a small set of agreed kinds, each new
+one gets named on the spot, and the same argument happens again the next time.
 
-These terms describe different kinds of things and should not be used
-interchangeably.
+This page defines the kinds. It does not explain how each one works — the
+sections that follow do that. It exists so a new concept can be placed rather
+than debated from scratch.
 
-## Artifact
+## Two kinds of thing
 
-A persistent piece of project knowledge.
+There are only two: knowledge that persists, and work that happens to it.
 
-Examples include vocabulary, research, decisions, requirements and
-specifications.
+Everything else refines one of those, or sits on the seam between them.
 
-An artifact answers:
+```text
+Knowledge that persists          Work that happens to it
+        │                                  │
+    Artefact                           Operation
+    Context                            Primitive
+    Vocabulary                         Methodology
+        │                                  │
+        └───────────── Skill ──────────────┘
+```
 
-> What knowledge should persist?
+| Term | Answers |
+| ---- | ------- |
+| **Artefact** | What knowledge should persist? |
+| **Context** | What does the agent load, and when? |
+| **Vocabulary** | What do these terms mean in this project? |
+| **Operation** | What are we doing? |
+| **Primitive** | Which operations does the methodology keep returning to? |
+| **Methodology** | How do these fit together? |
+| **Skill** | How does an agent perform an operation? |
 
 ---
 
-## Operation
+## Knowledge that persists
 
-A way of working with project knowledge.
+### Artefact
 
-An operation may create, inspect, challenge, transform or verify artifacts.
+A piece of project knowledge that is loaded and acted on.
 
-An operation answers:
+A decision about which database to use, explained once in a conversation, is
+not an artefact. The next agent has no access to it. Written down where that
+agent will find it, it is.
 
-> What are we doing?
+**How to recognise one.** Ask whether anything consumes it. An artefact is
+read as input to work. A file nothing ever loads is a file, not an artefact.
+
+**How many.** It depends on the kind. Some are singular by design — a project
+has exactly one vocabulary, at its root, always. Others accumulate: decisions
+and research notes only ever grow in number. Where a kind accumulates, each
+file is an artefact in its own right; the directory holding them is not.
+
+**Where it stops.** Source code is not an artefact. Code is what artefacts are
+*about*. Without that boundary, "knowledge that persists" swallows the entire
+repository and stops meaning anything.
+
+### Context
+
+Everything an agent can draw on to understand a project, and the discipline of
+what gets loaded when.
+
+Some context persists between sessions — that is what artefacts are. Some is
+supplied for one piece of work and gone afterwards.
+
+Not all of it is loaded the same way. Most is read once it becomes relevant to
+the work in hand. See [Context](/docs/context) for how that is organised.
+
+### Vocabulary
+
+The shared language of a project.
+
+Vocabulary is the one artefact every project has, kept at the root and read
+before every operation. That is what separates it from the rest: an agent
+cannot judge which decisions or research matter until it knows what the words
+mean.
+
+See [Vocabulary](/docs/context/vocabulary) for what belongs in it and how it
+is maintained.
+
+---
+
+## Work that happens to it
+
+### Operation
+
+Something done to project knowledge. An operation may create, inspect,
+challenge, transform or verify artefacts.
+
+Initialising a repository is an operation. So is interrogating a model, or
+researching an open question.
+
+**How to recognise one.** Name what goes in and what comes out. If you cannot,
+it is not an operation — it is a description of an activity in general.
+
+### Primitive
+
+An operation the methodology keeps returning to.
+
+Primitives are not a separate kind of thing from operations. A primitive *is*
+an operation — one fundamental enough to recur across different pieces of
+work, whatever is being built.
+
+**How to recognise one.** Ask whether it appears again in unrelated work.
+`vatras:init` runs once per repository and never again; it is an operation and
+not a primitive. Challenging a model happens continually, on every project.
+
+The exact set of Vatras primitives is still being discovered. Treat the
+current list as provisional.
+
+### Methodology
+
+The way operations arrange into a process: their order, what feeds what, and
+the principles governing the whole.
+
+Methodology is not a step and not a skill. It is the shape the steps make.
 
 ---
 
 ## Skill
 
-An executable AI workflow that performs an operation.
+A skill is where the two halves meet.
 
-A skill is the mechanism through which an AI agent carries out a particular
-way of working.
+A skill is an **artefact that encodes an operation**. It is a file, so it
+persists and is loaded like any other artefact. What makes it distinct is its
+content: instructions for performing a particular piece of work.
 
-A skill answers:
+`skills/init/SKILL.md` is an artefact. Initialising a repository is the
+operation it describes.
 
-> How does the agent perform this operation?
-
----
-
-## Primitive
-
-A fundamental building block of the Vatras methodology.
-
-Primitives are reusable patterns of reasoning or development that can appear
-inside multiple skills and workflows.
-
-A primitive answers:
-
-> What fundamental capability are we building upon?
-
-The exact set of Vatras primitives is still being discovered.
-
----
-
-## Context
-
-Information an AI agent can use to understand and work within a project.
-
-Context may be persistent or supplied during a particular piece of work.
-
-Context is the broader concept; individual artifacts can provide persistent
-context.
-
----
-
-## Vocabulary
-
-The shared language of a project.
-
-Vocabulary is a type of persistent project knowledge and may therefore be
-represented by a `VOCABULARY.md` artifact.
-
-Vocabulary answers:
-
-> What do these terms mean in this project?
-
----
-
-## Methodology
-
-The overall way Vatras approaches AI-assisted software development.
-
-Methodology describes the principles, stages and relationships between
-operations rather than a particular skill.
-
-Methodology answers:
-
-> How do these activities fit together?
-
----
-
-## Skill vs Operation
-
-These terms are related but not synonymous.
-
-An operation describes the activity.
-
-A skill is an implementation of that activity for an AI agent.
+This is why the two are so easily confused, and why the distinction is worth
+holding:
 
 ```text
 Operation
@@ -115,41 +144,30 @@ Skill
 AI agent
 ```
 
-## Artifact vs Document
+The operation is the activity. The skill is how an agent is taught to perform
+it. Change the skill and the activity stays the same; change the operation and
+the skill has to follow.
 
-A document is a format for presenting or storing information.
+---
 
-An artifact is a piece of persistent project knowledge.
-
-Not every document is an artifact, and an artifact does not necessarily need to
-be a particular document format.
-
-For example:
-
-```text
-VOCABULARY.md
-    ↓
-Artifact containing project vocabulary
-
-vocabulary.mdx
-    ↓
-Documentation explaining the artifact
-```
-
-## Terminology is part of the system
+## Classifying something new
 
 These definitions are themselves subject to refinement.
 
 When Vatras introduces a new concept, it should be clear whether that concept
 is:
 
-- an artifact
+- an artefact
 - an operation
-- a skill
 - a primitive
+- a skill
 - context
 - documentation
 - or part of the methodology
+
+Documentation is on that list and is not an artefact. This page is
+documentation: it explains the system to a person. Nothing loads it, and
+nothing acts on it.
 
 The terminology should evolve from actual use rather than being defined
 completely in advance.
