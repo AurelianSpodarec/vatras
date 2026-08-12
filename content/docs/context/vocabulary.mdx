@@ -1,0 +1,97 @@
+---
+title: Vocabulary
+description: The shared language used by humans and AI agents working on a project.
+---
+
+A project's vocabulary is its **ubiquitous language**: the terms and concepts
+that humans and AI agents use consistently when reasoning about the project.
+
+AI agents can understand the same concept in many different ways. If a project
+uses several names for the same thing, or if an important concept has no stable
+name, agents have to reconstruct that meaning repeatedly.
+
+A persistent vocabulary gives the project a shared language.
+
+## What belongs in the vocabulary
+
+Vocabulary should contain terms that have a specific meaning within the
+project.
+
+For example:
+
+- domain concepts
+- important system concepts
+- names for recurring processes
+- distinctions between concepts that are easy to confuse
+- relationships between important terms
+
+A vocabulary entry should explain what the project means by the term and,
+where useful, how it relates to neighbouring concepts.
+
+## What does not belong here
+
+Vocabulary is not:
+
+- a general project overview
+- an architecture document
+- a specification
+- an implementation guide
+- a list of every technical term in the repository
+- a scratchpad for unresolved ideas
+
+The purpose is to establish **shared language**, not to document everything.
+
+## Vocabulary emerges through development
+
+A vocabulary does not need to be designed completely at project initiation.
+
+Terms become important as the project is explored.
+
+For example, during discussion or implementation we may discover that several
+different descriptions are being used for the same concept. That is evidence
+that the concept may need a canonical name.
+
+The vocabulary can then be updated.
+
+This creates a feedback loop:
+
+```text
+Development
+    ↓
+Ambiguity discovered
+    ↓
+Concept clarified
+    ↓
+Canonical term established
+    ↓
+Vocabulary updated
+    ↓
+Future work uses the shared term
+```
+
+## AI and vocabulary
+
+Vocabulary is particularly useful when working with AI agents.
+
+If an agent repeatedly has to be told that several phrases refer to the same
+concept, that knowledge probably belongs in the project's persistent context.
+
+The vocabulary allows that knowledge to survive beyond an individual
+conversation.
+
+## Vocabulary and other project context
+
+Vocabulary is one part of the project's [Context Architecture](/docs/context/context-architecture).
+
+```text
+Agent Entry Point
+       ↓
+Context Architecture
+       ↓
+Vocabulary
+       ↓
+Deeper project context
+```
+
+The vocabulary establishes the language used to reason about the deeper
+context; it does not replace that context.
