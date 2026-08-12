@@ -1,0 +1,14 @@
+{
+  "name": "vatras",
+  "owner": {
+    "name": "Aurelian Spodarec",
+    "url": "https://github.com/AurelianSpodarec"
+  },
+  "plugins": [
+    {
+      "name": "vatras",
+      "source": "./",
+      "description": "A systematic way of building software with AI agents: agent entry point, context architecture and project model."
+    }
+  ]
+}
