@@ -21,9 +21,11 @@ Establish the initial AI development surface for a repository.
 
 ## Creates
 
-- `AGENTS.md`
-- `CLAUDE.md`
-- `docs/`
+- `AGENTS.md` — the entry point. States where project knowledge lives, how the
+  repository is organised, and which documents are authoritative.
+- `CLAUDE.md` — one line pointing to `AGENTS.md`. Nothing else, so the
+  repository has one set of agent instructions rather than two.
+- `docs/` — the root of the Context Architecture.
 
 ## Principles
 
