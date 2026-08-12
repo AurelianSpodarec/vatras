@@ -1,5 +1,18 @@
 # Vatras
 
+I can build software with AI. I've done it.
+
+But the process has been improvised — different prompts, different skills,
+different approaches, with no system connecting them.
+
+Vatras is that system: a methodology that makes the way we build software with
+AI repeatable, observable and improvable.
+
+## This repository
+
+The framework itself, as skills under `skills/`, and the documentation site
+that describes it.
+
 A [TanStack Start](https://tanstack.com/start) application, with documentation
 powered by [Fumadocs](https://fumadocs.dev).
 
