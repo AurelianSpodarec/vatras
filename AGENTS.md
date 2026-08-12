@@ -24,6 +24,14 @@ Read `content/docs/` for what Vatras is, `proposals/` for why. Proposals are
 thinking in progress and may contradict the published docs; the published docs
 win.
 
+## Project vocabulary
+
+`VOCABULARY.md` contains the project's canonical vocabulary and ubiquitous
+language.
+
+When a term has a specific meaning within Vatras, use the terminology defined
+there rather than inventing alternative names.
+
 ## Repository layout
 
 ```text
