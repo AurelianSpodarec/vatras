@@ -12,22 +12,72 @@ Establish the initial AI development surface for a repository.
 ## Process
 
 1. Inspect the repository.
-2. Identify existing agent instruction files.
-3. Identify existing documentation.
-4. Do not overwrite existing project knowledge.
-5. Create or update the repository-level agent entry point.
-6. Establish the Context Architecture.
-7. Report what was created or changed.
+2. Detect which AI coding agents it is set up for, using the evidence below.
+3. Identify existing agent instruction files and existing documentation.
+4. Report what was detected and confirm it before writing. If there is nobody
+   to answer, proceed with what was detected and say so in the report.
+5. Create or update `AGENTS.md` as the canonical entry point.
+6. Create one adapter per detected agent.
+7. Establish the Context Architecture at `docs/`.
+8. Report the resulting structure.
+
+Do not overwrite existing project knowledge at any step. Add to it, or ask.
+
+## Detecting the agent environment
+
+Read the repository rather than asking first. The evidence is already there:
+
+| Evidence                                            | Agent            |
+| --------------------------------------------------- | ---------------- |
+| `.claude/`, `CLAUDE.md`                             | Claude Code      |
+| `AGENTS.md`                                         | Codex, and the shared standard |
+| `.cursor/rules/`, `.cursorrules`                    | Cursor           |
+| `.github/copilot-instructions.md`                   | Copilot          |
+| `.windsurf/rules/`, `.windsurfrules`, `.clinerules` | Windsurf, Cline  |
+
+Confirm the detected set with the user before writing. Detection is the initial
+model; confirmation corrects it. Asking before looking discards evidence the
+repository already provides.
+
+If none are present, no agent is configured yet. Create `AGENTS.md` alone and
+add adapters when an agent appears.
 
 ## Creates
 
-- `AGENTS.md` — the entry point. States where project knowledge lives, how the
-  repository is organised, and which documents are authoritative.
-- `CLAUDE.md` — the line `@AGENTS.md` and nothing else. Claude Code does not
-  read `AGENTS.md`, and `@` is an import, so this loads the shared entry point
-  rather than duplicating it. A markdown link does not work: it loads nothing.
+- `AGENTS.md` — the canonical entry point, always. States where project
+  knowledge lives, how the repository is organised, and which documents are
+  authoritative. It points to context; it does not contain it.
+- One adapter per detected agent. See below.
 - `docs/` — the root of the Context Architecture.
+
+## Adapters
+
+An adapter routes one agent to `AGENTS.md`. It contains a pointer and nothing
+else. Never copy project context into an adapter: two copies become two
+different sets of instructions.
+
+- **Claude Code** — `CLAUDE.md` containing exactly `@AGENTS.md`. Claude Code
+  reads `CLAUDE.md`, not `AGENTS.md`, and `@` is an import that loads the file.
+  A markdown link loads nothing.
+- **Agents that read `AGENTS.md` natively** — no adapter. Adding one is noise.
+- **Anything else** — the smallest pointer that agent supports.
 
 ## Principles
 
-The entry point should direct the agent towards project context rather than attempting to contain the entire context itself.
+Do not prescribe the filesystem. Establish the information architecture.
+
+The goal is a clear path from:
+
+```text
+AI Agent
+   ↓
+Agent Entry Point
+   ↓
+Project Context
+   ↓
+Codebase
+```
+
+Which files implement that path depends on the repository and the agents it
+supports. One canonical source of project context, with adapters where an agent
+requires them.
