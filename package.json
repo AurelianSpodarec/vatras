@@ -1,6 +1,7 @@
 {
   "name": "vatras",
   "private": true,
+  "license": "MIT",
   "type": "module",
   "sideEffects": false,
   "scripts": {

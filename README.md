@@ -83,6 +83,14 @@ nitro({ preset: 'vercel' })
 
 See the [TanStack Start hosting guide](https://tanstack.com/start/latest/docs/framework/react/guide/hosting#nitro).
 
+## Licence
+
+The Vatras skills, the site application and its configuration are licensed
+under the [MIT License](LICENSE).
+
+The published documentation under `content/docs/` is licensed under
+[CC BY 4.0](content/docs/LICENSE).
+
 ## Known issue
 
 Raw markdown URLs (`/docs/<slug>.md`) return 404 on the **dev server** but work
