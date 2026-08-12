@@ -23,8 +23,9 @@ Establish the initial AI development surface for a repository.
 
 - `AGENTS.md` — the entry point. States where project knowledge lives, how the
   repository is organised, and which documents are authoritative.
-- `CLAUDE.md` — one line pointing to `AGENTS.md`. Nothing else, so the
-  repository has one set of agent instructions rather than two.
+- `CLAUDE.md` — the line `@AGENTS.md` and nothing else. Claude Code does not
+  read `AGENTS.md`, and `@` is an import, so this loads the shared entry point
+  rather than duplicating it. A markdown link does not work: it loads nothing.
 - `docs/` — the root of the Context Architecture.
 
 ## Principles
