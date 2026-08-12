@@ -26,11 +26,25 @@ win.
 
 ## Project vocabulary
 
-`VOCABULARY.md` contains the project's canonical vocabulary and ubiquitous
-language.
+`VOCABULARY.md` holds the project's canonical terms. Read it before starting
+work, and before deciding what else to read.
 
-When a term has a specific meaning within Vatras, use the terminology defined
-there rather than inventing alternative names.
+- When your output names a project concept — a plan, a commit message, a
+  heading, an issue title — use the canonical term.
+- Never use a term listed under `_Avoid_`.
+- If the concept you need has no term, treat that as a signal. Either the
+  language is being invented and should be reconsidered, or there is a real
+  gap and it should be raised.
+- When a term settles during work, record it in the same session rather than
+  batching it. Where the ambiguity is genuine, ask rather than deciding
+  silently.
+- Changing an established term is a migration, not an edit. Update everything
+  that used the old word in the same change, record the move under Resolved,
+  and add the old word to `_Avoid_`.
+
+`content/docs/` is the source for these terms; `VOCABULARY.md` is the
+compressed form loaded on every operation. When the two disagree, the
+documentation is correct and the vocabulary needs updating.
 
 ## Repository layout
 
