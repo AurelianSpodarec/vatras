@@ -1,0 +1,63 @@
+---
+title: Dictionary
+description: Plain definitions of the general terms this documentation uses.
+---
+
+These are general terms, borrowed from software practice, that appear in this
+documentation. They are not Vatras's own concepts — those are defined in
+[Core Terms](/docs/concepts/core-terms).
+
+A term belongs here if it appears in these pages and a reader might reasonably
+not know it. General programming vocabulary that Vatras never uses does not.
+
+### Ambiguity
+
+When a word could mean more than one thing, or when two words are being used
+for the same thing without anyone having decided which is right.
+
+### Architecture Decision Record
+
+A short written record of a decision that would be costly to reverse: what was
+chosen, and why. Numbered so it can be referred to later. Often shortened to
+ADR, or called a decision record.
+
+### Bounded context
+
+From domain-driven design: a part of a system with its own consistent
+language, where a word means one specific thing. The same word can mean
+something else elsewhere — an "order" in billing is not an "order" in
+shipping.
+
+### Canonical
+
+The agreed version, where several exist. A canonical term is the one the
+project uses; the alternatives are recorded as ones to avoid.
+
+### Cardinality
+
+How many of something there can be. "A project has exactly one vocabulary" and
+"decisions accumulate" are both statements about cardinality.
+
+### Domain
+
+The subject matter a piece of software is about — banking, logistics,
+publishing — as distinct from the technology used to build it.
+
+### Domain model
+
+A structured understanding of a domain: its concepts, what they mean, and how
+they relate. Vatras uses [Project Model](/docs/project-model) instead, because
+what it captures is broader than the domain alone.
+
+### Glossary
+
+A list of terms with their definitions. Vatras uses
+[vocabulary](/docs/context/vocabulary) for the shared language itself, and
+treats a glossary as one way of writing it down.
+
+### Ubiquitous language
+
+From domain-driven design: a shared set of terms used consistently by everyone
+working on a project — in conversation, in documentation and in the code — so
+that one concept is not called three different things. This is what Vatras
+calls a project's [vocabulary](/docs/context/vocabulary).
