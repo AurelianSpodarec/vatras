@@ -1,63 +1,22 @@
 ---
 title: Skills
+description: The skills available in this repository.
 ---
 
-Skills give Vesta instructions for doing specific kinds of work.
+A skill is an artefact that encodes an operation: a file whose content
+instructs an agent how to perform a particular piece of work. Defined by
+`SKILL.md`, one directory per skill under `skills/`.
 
-A repository can have many skills, but most tasks need only a few of them.
-Loading every skill into context would add instructions that have nothing
-to do with the work at hand. Vesta therefore separates **discovering a
-skill** from **loading a skill**.
+See [Skill Routing](/docs/skills-routing) for how a skill is found and
+loaded.
 
-## Routing
+## Available
 
-Vesta uses a skill map to decide which skills are relevant to the current
-work.
+| Skill               | Operation | Description                                                   |
+| ------------------- | --------- | -------------------------------------------------------------- |
+| `vatras:init`       | Establish | Initialise a repository for Vatras.                            |
+| `vatras:vocabulary` | —         | Establish and maintain the project's ubiquitous language.      |
+| `vatras:idea`       | Capture   | Capture an idea in the project's inbox without acting on it.   |
 
-The map is lightweight: it describes what a skill is for and when it
-should be loaded. The skill itself is loaded only when it is relevant.
-
-```text
-task
-  ↓
-skill map
-  ↓
-relevant skill
-  ↓
-load instructions
-  ↓
-work
-```
-
-For example, if the user is working on an idea, Vesta can route to the
-Idea skills:
-
-```text
-skills/
-└── ideas/
-    ├── SKILL-MAP.md
-    ├── idea/
-    ├── critique/
-    ├── investigate/
-    └── iterate/
-```
-
-If the task has nothing to do with ideas, Vesta does not read those
-skills.
-
-### Routing rules
-
-- **Do not load unrelated skills.** A skill being present in the
-  repository does not make it relevant.
-- **Route from the work.** Determine what the user is trying to do before
-  loading skills.
-- **Load only what is needed.** Once a relevant area is identified, load
-  the skill required for the work.
-- **Do not explore unrelated directories.** If ideas are not relevant,
-  do not read `skills/ideas/`.
-- **Do not load skills speculatively.** A skill should be loaded when the
-  work requires it, not because it might become useful later.
-
-The principle is:
-
-> **Skills should be discoverable without being loaded.**
+This list matches `skills/` as it stands. A new directory under `skills/`
+with a `SKILL.md` adds a skill; nothing here is generated automatically.

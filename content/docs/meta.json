@@ -8,6 +8,7 @@
     "context",
     "project-model",
     "primitives",
-    "skills"
+    "skills",
+    "skills-routing"
   ]
 }

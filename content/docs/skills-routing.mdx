@@ -1,0 +1,71 @@
+---
+title: Skill Routing
+description: How an agent decides a skill is relevant, and when its instructions load.
+---
+
+A repository can hold many skills, but a piece of work only ever needs a few
+of them. Loading every skill's full instructions into context would mean
+carrying instructions that have nothing to do with the task at hand. Vatras
+separates **discovering** a skill from **loading** it.
+
+```text
+task
+  ↓
+discover        decide which skill, if any, applies
+  ↓
+load            read that skill's instructions, and only that one
+  ↓
+work
+```
+
+## Two ways in
+
+**Named directly.** The developer already knows which skill they want:
+`vatras:idea`, `vatras:init`. There is nothing to discover — the developer
+has done the routing themselves, so no skill's instructions or description
+need to be in context until that one is loaded. This is the cheapest path,
+and it is what exists in this repository today.
+
+**Found from the work.** The developer describes what they want without
+naming a skill — "jot this down for later" rather than "capture an idea."
+Here the agent has to recognise that a skill applies before it can load one.
+That recognition needs something about the skill to already be visible: a
+name alone is not enough to match against a request that never used it.
+
+Both are real usage. Routing that only covers the named case leaves the
+second kind of request unable to find a skill that exists.
+
+## Rules for discovery
+
+- **Do not load unrelated skills.** A skill being present in the repository
+  does not make it relevant.
+- **Route from the work.** Determine what the developer is trying to do
+  before loading anything.
+- **Load only what is needed.** Once a relevant skill is identified, load
+  that skill and no other.
+- **Do not explore unrelated directories.** If a piece of work has nothing
+  to do with ideas, do not read `skills/idea/`.
+- **Do not load speculatively.** A skill loads because the work requires it,
+  not because it might become useful later.
+
+> Skills should be discoverable without being loaded.
+
+## At scale
+
+These rules hold at the number of skills this repository has today. They say
+nothing about the cost of discovery itself once there are enough skills that
+even a one-line description of each becomes expensive to carry on every turn.
+
+Two ways to keep discovery cheap as skills accumulate, neither implemented:
+
+- **Group before naming.** Skills sharing a directory — an `ideas/` family,
+  say — could be discovered as a group before any individual description
+  loads, so an unrelated family costs nothing beyond its own name.
+- **Search instead of carrying.** Descriptions stay out of context entirely
+  and are matched against the work on demand, so cost is paid only for the
+  skills actually considered, however many exist.
+
+Which of these — or something else — Vatras adopts is unresolved. The
+distinction worth keeping regardless: naming a skill and finding one solve
+different problems, and a routing design that only handles the first will
+make the second kind of request silently fail to find what exists.
