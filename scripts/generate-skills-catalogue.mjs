@@ -16,6 +16,37 @@ const indexPath = path.join(root, 'content/docs/skills/index.mdx')
 const START = '{/* skills:start */}'
 const END = '{/* skills:end */}'
 
+// Idea Inbox operations documented in content/docs/context/ideas.mdx that
+// have no skills/<name>/SKILL.md yet. Listed here so the catalogue shows the
+// full documented API; drop an entry once its skill is actually built.
+const PLANNED_IDEA_SKILLS = [
+  {
+    name: 'critique',
+    operation: 'Critique',
+    description: 'Surface objections, hidden assumptions and alternatives for an idea.',
+  },
+  {
+    name: 'investigate',
+    operation: 'Investigate',
+    description: "Investigate an idea's open questions and return findings and constraints.",
+  },
+  {
+    name: 'iterate',
+    operation: 'Iterate',
+    description: 'Sharpen an idea into a clearer entry.',
+  },
+  {
+    name: 'duplicates',
+    operation: 'Duplicates',
+    description: 'Find duplicate ideas across the inbox.',
+  },
+  {
+    name: 'develop',
+    operation: 'Develop',
+    description: 'Run critique, investigation and iteration on an idea together.',
+  },
+]
+
 function parseFrontmatter(source, skillPath) {
   const match = source.match(/^---\r?\n([\s\S]*?)\r?\n---/)
   if (!match) throw new Error(`${skillPath} is missing frontmatter`)
@@ -55,8 +86,14 @@ const table = (rows) =>
     ...rows.map((s) => `| \`vatras:${s.name}\` | ${s.operation} | ${s.description} |`),
   ].join('\n')
 
-const ideaSkills = skills.filter((s) => s.group === 'idea')
+const builtIdeaSkills = skills.filter((s) => s.group === 'idea')
 const otherSkills = skills.filter((s) => s.group !== 'idea')
+
+const builtNames = new Set(builtIdeaSkills.map((s) => s.name))
+const ideaSkills = [
+  ...builtIdeaSkills,
+  ...PLANNED_IDEA_SKILLS.filter((s) => !builtNames.has(s.name)),
+]
 
 const body = [
   table(otherSkills),
