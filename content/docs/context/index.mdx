@@ -1,16 +1,19 @@
 ---
 title: Overview
-description: How an AI agent enters and understands a repository.
+description: How an AI agent enters, understands, and works within a repository.
 ---
 
 An AI agent needs more than the codebase to work effectively on a project.
 
-It needs to know where to start, where project knowledge lives, and which information it can rely on.
+It needs to know where to start, where project knowledge lives, and which
+information needs to be available for the work at hand.
 
 Vatras separates this into two parts:
 
-- [Agent Entry Point](/docs/context/agent-entry-point) — the starting point for an AI agent working in a repository.
-- [Context Architecture](/docs/context/context-architecture) — the structure used to organise persistent project knowledge.
+- [**Agent Entry Point**](/docs/context/agent-entry-point) — the starting
+  point for an AI agent working in a repository.
+- [**Context Architecture**](/docs/context/context-architecture) — the
+  structure used to organise persistent project knowledge.
 
 ```text
 AI Agent
@@ -26,18 +29,61 @@ Codebase
 
 The entry point gets the agent into the project.
 
-The context architecture gives it the knowledge it needs to work within it.
+The context architecture determines where project knowledge lives and how
+it becomes relevant to the work.
 
-## Vocabulary
+## Context is not all loaded at once
 
-Not all of that knowledge is loaded the same way. Most of it is read when it becomes relevant to the work in hand.
+A repository can contain more project knowledge than an agent needs for
+the current task.
 
-[Vocabulary](/docs/context/vocabulary) is the exception. It lives at the root of the repository and is read before the work starts, on every operation, whatever the topic. An agent cannot judge which decisions or research matter to a piece of work until it knows what the words mean.
+Vatras therefore does not treat all context as equally relevant.
+
+Some context is always in scope. Other context is brought in when the
+work makes it relevant.
 
 ```text
 Context Architecture
-    ├── Vocabulary        read on every operation
-    └── Everything else   read when it becomes relevant
+    ├── Vocabulary       read on every operation
+    └── Other context   read when relevant
 ```
 
-Vocabulary is one part of the context architecture, and the part that is always in scope.
+[**Vocabulary**](/docs/context/vocabulary) is the exception. It lives at
+the root of the repository and is read before the work starts, on every
+operation, whatever the topic.
+
+An agent cannot reliably interpret project knowledge until it knows what
+the project's terms mean.
+
+## Context and work
+
+Primitives and flows operate on the work in front of the agent.
+
+Context provides the durable knowledge that work can rely on and add to.
+
+Not everything produced during an interaction needs to become context.
+Only knowledge that remains useful beyond the current interaction needs
+to be made durable.
+
+```text
+Context
+   ↓
+Work
+   ↓
+New understanding
+   ↓
+Context
+```
+
+## Context architecture
+
+[**Context Architecture**](/docs/context/context-architecture) describes
+how project knowledge is organised and how it becomes available to the
+agent.
+
+The individual parts of that architecture are documented separately:
+
+- [**Vocabulary**](/docs/context/vocabulary)
+- [**Idea Inbox**](/docs/context/ideas)
+- [**Agent Entry Point**](/docs/context/agent-entry-point)
+- [**Context Architecture**](/docs/context/context-architecture)

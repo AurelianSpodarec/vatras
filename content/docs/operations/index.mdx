@@ -1,0 +1,115 @@
+---
+title: Overview
+description: How Record keeps durable project context in step with the work.
+---
+
+Record makes durable project context reflect what has been learned or
+changed during the work.
+
+It is not limited to writing something new. Recording can create new
+context, update existing context, or identify knowledge that is no longer
+correct.
+
+## What it does
+
+Record reviews the work and asks what, if anything, should survive the
+current interaction.
+
+When something is worth preserving, it is placed in the appropriate
+context artefact.
+
+```text
+Work
+  ↓
+What changed or was learned?
+  ↓
+Should it survive this interaction?
+  ↓
+Where does it belong?
+  ↓
+Create, update, or reconcile context
+```
+
+If nothing needs to become durable, Record does nothing.
+
+## What can be recorded
+
+The destination depends on what was learned.
+
+For example:
+
+- a new project term belongs in [**Vocabulary**](/docs/context/vocabulary)
+- an important decision belongs in the project's decision record
+- a useful finding may belong in research
+- a change to how the project is understood may belong in the project
+  model
+
+Record does not require everything to become a particular kind of
+document. The knowledge determines the destination.
+
+## Record can be used on its own
+
+Recording does not depend on another flow.
+
+It can follow work such as:
+
+```text
+Grill → Record
+
+Sharpen → Record
+
+Build → Record
+
+Verify → Record
+```
+
+It can also be invoked independently to review existing context.
+
+```text
+Existing context
+    ↓
+Review against current understanding
+    ↓
+Find missing, stale, or contradictory knowledge
+    ↓
+Reconcile context
+```
+
+## What Record does not do
+
+Record does not preserve everything that happened.
+
+Temporary conversation, intermediate reasoning, and information that has no
+value beyond the current interaction do not need to become project
+context.
+
+It also does not decide that every finding belongs in the same place.
+Vocabulary, decisions, research, and other context artefacts have
+different purposes.
+
+## Relationship to flows
+
+A flow can use Record when its result should become durable context.
+
+For example:
+
+```text
+Grill
+  ↓
+Record
+```
+
+This is a composition of the [**Grill**](/docs/flows/grill) flow and the
+Record operation. Recording is therefore not inherently part of Grill.
+
+## Classification
+
+Record is currently treated as a **context operation**, rather than a
+primitive.
+
+Primitives describe moves used to work through an understanding. Record
+acts on the project's durable context to make that context reflect the
+result of the work.
+
+This distinction can change if the implementation shows that Record has a
+more fundamental role in the primitive model.

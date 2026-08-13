@@ -1,87 +1,95 @@
 ---
 title: Methodology
-description: What happens when you build software with Vatras, and in what order.
+description: How work moves through Vatras, from establishing a project to learning from what was built.
 ---
 
-A set of moves is not a process. Vatras names operations so they can be reached
-for deliberately, and arranges them so the work leaves something behind.
+A methodology gives the work a shape. It describes where work tends to
+go, while primitives provide the moves available at any point and flows
+combine those moves into larger pieces of work.
 
 ## The loop
 
 ```text
-              Establish              once per repository
-                  ↓
-              Understand             what is this project, really
-                  ↓
-               Decide                record what was hard to reverse
-                  ↓
-                Plan
-                  ↓
-                Build
-                  ↓
-               Verify                is this what we intended
-                  ↓
-              Feed back
-                  │
-    ┌─────────────┘
+Establish
     ↓
-Persistent context ──→ the next pass starts better informed
+Understand
+    ↓
+Decide
+    ↓
+Plan
+    ↓
+Build
+    ↓
+Verify
+    ↓
+Feed back
+    │
+    └────→ Persistent context ──→ next pass
 ```
 
-The return arrow is the part that matters. A pass that changes no context has
-taught the project nothing, and the same ground gets covered again next time.
+The return is the important part. A pass should leave the project better
+informed than it was before. What is learned during the work becomes part
+of the context so the next pass does not start from the same uncertainty.
+
+The stages describe the usual direction of work. They are not a sequence
+that every task must follow.
 
 ## The stages
 
-**Establish** puts the surface in place — the [agent entry
-point](/docs/context/agent-entry-point), its adapters, and the root of the
-[Context Architecture](/docs/context/context-architecture). It runs once.
+**Establish** puts the project's working surface in place: the
+[**agent entry point**](/docs/context/agent-entry-point), its adapters, and
+the root of the [**Context Architecture**](/docs/context/context-architecture).
+It normally happens once per repository.
 
-**Understand** forms a model of the project and then attacks it. Read what is
-already there, propose an understanding, challenge it, investigate what the
-challenge exposes. Terminology settles along the way and is recorded as it
-does.
+**Understand** builds a model of the project and tests that model. Read
+what exists, form an understanding, challenge it, and investigate what
+the challenge exposes. Terminology settles along the way and is recorded
+in the project.
 
-**Decide** records the choices that would be costly to reverse, along with the
-reasoning behind them. Reasoning that is not written down gets re-derived
-later, usually worse.
+**Decide** records choices that would be costly to reverse, together with
+the reasoning behind them. Decisions that are not recorded have to be
+re-derived later.
 
-**Plan** turns understanding into intended work. The plan is an artefact;
-where it lives — markdown, an issue tracker, whatever the project already uses
-— is not Vatras's concern.
+**Plan** turns an intended change into concrete work. The plan is an
+artefact; where it lives is not prescribed by Vatras.
 
-**Build** implements against the plan, with the vocabulary and decisions
-loaded, so the work uses the project's own language rather than inventing
-parallel names.
+**Build** implements the plan using the project's existing vocabulary,
+context, and decisions.
 
-**Verify** asks whether what was built is what was intended. That is a
-different question from whether it runs.
+**Verify** asks whether what was built is what was intended. That is
+different from asking whether it runs.
 
-**Feed back** decides what the pass revealed and where it belongs. A failure
-that produces no change to the context will happen again.
+**Feed back** captures what the work revealed and puts it where it can
+inform the next pass. A failure that produces no change to the project
+context is likely to be repeated.
 
-## Primitives are not stages
+## Stages, primitives, and flows
 
-The loop describes where work usually goes. It does not describe what you are
-allowed to do next.
+These describe different dimensions of the work.
 
-A stage is a position in the process. A [primitive](/docs/primitives) is a move
-available at any position. Challenging the model is not the third step — it is
-worth doing before anything is written, halfway through building, and again
-after an implementation proves the original understanding wrong.
+| Concept | Describes |
+|---|---|
+| **Stage** | Where the work is in the methodology |
+| **Primitive** | A basic operation that can be performed at any point |
+| **Flow** | A combination of primitives into a larger piece of work |
+| **Skill** | The instructions used to perform a capability |
 
-```text
-Stages       ordered, and only by default
-Primitives   available at any point, and what stages are made of
-```
+A stage does not restrict which primitives can be used. A flow can cross
+stage boundaries when that is useful.
 
-A methodology that forbids moves is a process to comply with. One that names
-them is a vocabulary for work.
+For example, challenging an understanding is not reserved for
+**Understand**. It can happen during planning, implementation, or
+verification when new information makes the existing understanding
+questionable.
 
 ## What is built so far
 
-Establish exists as `vatras:init`. Understand is partly named — its operations
-have names, and only vocabulary has a skill behind it.
+**Establish** exists as `vatras:init`.
 
-Everything from Decide onwards is unbuilt. The stages are named here because
-the loop is incomplete without them, not because they are ready to use.
+**Understand** is partly implemented. Its operations have names, and
+[**Vocabulary**](/docs/context/vocabulary) has a skill behind it.
+
+The remaining stages are defined by the methodology but are not yet
+implemented. They are named here because they describe the intended
+shape of the complete loop, not because every stage is currently
+available as a Vatras skill.

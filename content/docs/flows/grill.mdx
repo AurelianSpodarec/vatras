@@ -1,0 +1,77 @@
+---
+title: Grill
+description: Pressure-tests an understanding through an interactive sequence of targeted questions.
+---
+
+Grill pressure-tests an understanding through an interactive sequence of
+targeted questions.
+
+The next question depends on the answer to the previous one. The aim is
+to uncover important uncertainties and assumptions rather than work
+through a fixed list of questions.
+
+## Built from
+
+- [**Probe**](/docs/primitives/probe)
+- [**Investigate**](/docs/primitives/investigate)
+- [**Iterate**](/docs/primitives/iterate)
+
+## Shape
+
+```text
+Probe
+   ↓
+Investigate when the answer can be established
+   ↓
+Iterate the understanding
+   ↓
+Probe again
+   ↺
+```
+
+The flow continues while important uncertainties remain.
+
+## Input
+
+An understanding, proposal, or decision that needs to be tested.
+
+## Output
+
+Resolved questions, exposed assumptions, and a better-tested
+understanding.
+
+## Example
+
+Start with:
+
+```text
+Vocabulary should be global across the repository.
+```
+
+Probe:
+
+```text
+Why should vocabulary be global?
+```
+
+Answer:
+
+```text
+Because the same word should mean the same thing everywhere.
+```
+
+Probe again:
+
+```text
+What happens when two contexts legitimately need different meanings?
+```
+
+The resulting understanding may be:
+
+```text
+Vocabulary should be scoped to the context in which it is used.
+```
+
+## Skill
+
+`vatras:grill`

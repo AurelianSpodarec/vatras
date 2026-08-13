@@ -1,0 +1,69 @@
+---
+title: Sharpen
+description: Takes an idea through critique, investigation, and iteration to make it clearer and better understood.
+---
+
+Sharpen takes an idea through critique, investigation, and iteration to
+make it clearer and better understood.
+
+## Built from
+
+- [**Critique**](/docs/primitives/critique)
+- [**Investigate**](/docs/primitives/investigate)
+- [**Iterate**](/docs/primitives/iterate)
+
+## Shape
+
+```text
+Critique
+   ↓
+Investigate
+   ↓
+Iterate
+   ↺
+```
+
+The flow can return to Critique when iteration exposes something that
+needs to be challenged again.
+
+Not every idea needs every step. If an idea is already clear enough,
+there may be little to investigate or change.
+
+## Input
+
+An idea worth spending time understanding.
+
+## Output
+
+A sharper idea, together with findings and constraints discovered along
+the way.
+
+## Example
+
+Start with:
+
+```text
+We could use the old mine to get behind the orcs.
+```
+
+Critique finds:
+
+```text
+The plan assumes the mine is accessible.
+```
+
+Investigation finds:
+
+```text
+The eastern entrance is blocked, but the western entrance is open.
+```
+
+Iteration produces:
+
+```text
+We could use the western entrance to get behind the orcs.
+```
+
+## Skill
+
+`vatras:sharpen`

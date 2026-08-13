@@ -1,0 +1,112 @@
+---
+title: Record
+description: Makes durable project context reflect what has been learned or changed during the work.
+---
+
+Record makes durable project context reflect what has been learned or
+changed during the work.
+
+It is not simply a command to write something down. Record determines
+whether something from the work should survive the current interaction
+and, if so, makes the appropriate context reflect it.
+
+## What it does
+
+Record reviews the work and asks what, if anything, should become durable.
+
+```text
+Work
+  ↓
+What changed or was learned?
+  ↓
+Should it survive this interaction?
+  ↓
+Where does it belong?
+  ↓
+Create, update, or reconcile context
+```
+
+If nothing needs to become durable, Record does nothing.
+
+## What can be recorded
+
+The destination depends on what was learned.
+
+For example:
+
+- a new project term belongs in [**Vocabulary**](/docs/context/vocabulary)
+- an important decision belongs in the project's decision record
+- a useful finding may belong in research
+- a change to the project's understanding may belong in the project model
+
+Record does not require everything to become the same kind of document.
+The knowledge determines the appropriate destination.
+
+## Record can be used independently
+
+Recording does not depend on another flow.
+
+It can follow different kinds of work:
+
+```text
+Grill
+  ↓
+Record
+
+Sharpen
+  ↓
+Record
+
+Build
+  ↓
+Record
+
+Verify
+  ↓
+Record
+```
+
+It can also be invoked on its own to review existing context against the
+current understanding.
+
+```text
+Existing context
+    ↓
+Review
+    ↓
+Find missing, stale, or contradictory knowledge
+    ↓
+Reconcile context
+```
+
+## What Record does not do
+
+Record does not preserve everything that happened.
+
+Temporary conversation, intermediate reasoning, and information with no
+value beyond the current interaction do not need to become project
+context.
+
+Record also does not mean that every finding must be written somewhere.
+Sometimes the correct result is that nothing needs to change.
+
+## Relationship to flows
+
+A flow may use Record when its result should become durable context.
+
+For example:
+
+```text
+Grill
+  ↓
+Record
+```
+
+This is a composition of the [**Grill**](/docs/flows/grill) flow and the
+Record operation. Recording is therefore not inherently part of Grill.
+
+## Skill
+
+`vatras:record`
+
+The skill is the agent-facing interface for invoking Record.

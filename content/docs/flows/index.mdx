@@ -1,0 +1,46 @@
+---
+title: Overview
+description: How flows combine primitives into a larger piece of work.
+---
+
+Flows combine primitives into a larger piece of work.
+
+A flow describes a pattern for combining moves. It does not require a fixed
+sequence in every situation; the work can adapt to what is discovered.
+
+A flow can be used directly by an agent or exposed through a skill.
+
+## Flows
+
+| Flow                              | Description                                                       |
+| ---------------------------------- | ------------------------------------------------------------------- |
+| [**Sharpen**](/docs/flows/sharpen) | Develop an idea through critique, investigation, and iteration.   |
+| [**Grill**](/docs/flows/grill)     | Pressure-test an understanding through interactive probing.       |
+
+## Primitives and flows
+
+A primitive is a single move. A flow combines primitives into a larger
+piece of work.
+
+```text
+Primitive
+    Critique
+
+Flow
+    Sharpen
+    Critique → Investigate → Iterate
+```
+
+The same primitive can be used by multiple flows.
+
+## Flows and skills
+
+A flow describes the work. A skill is the executable interface through
+which an agent performs that work.
+
+For example:
+
+```text
+Flow  → Sharpen
+Skill → vatras:sharpen
+```

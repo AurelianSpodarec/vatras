@@ -21,14 +21,15 @@ what artefacts are about.
 _Avoid_: artifact
 
 **Context**:
-Everything an agent can draw on to understand a project, and the discipline of
-what gets loaded when. Some persists between sessions; some is supplied for
-one piece of work.
+The thing being worked on.
 
 **Context Architecture**:
 The structure of persistent knowledge around a codebase, and the rules for how
 an agent loads it.
 _Avoid_: documentation, knowledge base
+
+**Flow**:
+A combination of primitives and interaction.
 
 **Methodology**:
 The way operations arrange into a process: their order, what feeds what, and
@@ -44,11 +45,10 @@ Something done to project knowledge. An operation may create, inspect,
 challenge, transform or verify artefacts.
 
 **Primitive**:
-An **Operation** the methodology keeps returning to — one fundamental enough
-to recur across unrelated pieces of work. Not a separate kind of thing from an
-operation.
+A basic **Operation** the methodology keeps returning to — one fundamental
+enough to recur across unrelated pieces of work. Not a separate kind of thing
+from an operation.
 _Avoid_: command
-_Provisional_ — the set of Vatras primitives is still being discovered.
 
 **Project Model**:
 The structured understanding of a project that an agent reasons from: its
@@ -94,6 +94,11 @@ _Avoid_: glossary, ubiquitous language
 
 ## Open
 
+- **Context** was redefined to mean the thing a primitive operates on (an
+  Idea, a Plan). Its old sense — everything an agent can draw on to
+  understand a project, and the discipline of what gets loaded when — is
+  still what `content/docs/context/` and **Context Architecture** describe,
+  and has not been renamed or reconciled yet.
 - "docs" names two things: `content/docs/` is published site content, `docs/`
   is the Context Architecture for working on this repository.
 - "Idealisation" and "Ideation" both name pages in the documentation with no
