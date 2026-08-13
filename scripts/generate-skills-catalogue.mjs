@@ -1,8 +1,7 @@
 #!/usr/bin/env node
-// Regenerates the skills table under "## Available" in
-// content/docs/skills/index.mdx from skills/*/SKILL.md frontmatter.
-// skills/ is the source of truth; run via `pnpm skills:sync`, or
-// automatically before dev/build.
+// Regenerates the skills table in content/docs/skills/index.mdx from
+// skills/*/SKILL.md frontmatter. skills/ is the source of truth; run via
+// `pnpm skills:sync`, or automatically before dev/build.
 
 import { readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
@@ -31,7 +30,7 @@ const skills = readdirSync(skillsDir, { withFileTypes: true })
   .filter((entry) => entry.isDirectory())
   .map((entry) => {
     const skillPath = `skills/${entry.name}/SKILL.md`
-    const { name, title, description, operation } = parseFrontmatter(
+    const { name, description, operation } = parseFrontmatter(
       readFileSync(path.join(skillsDir, entry.name, 'SKILL.md'), 'utf8'),
       skillPath,
     )
@@ -43,18 +42,15 @@ const skills = readdirSync(skillsDir, { withFileTypes: true })
         `${skillPath} frontmatter name "${name}" does not match its directory "${entry.name}"`,
       )
     }
-    return { name, title: title || null, description, operation: operation || null }
+    return { name, description, operation: operation || '—' }
   })
   .sort((a, b) => a.name.localeCompare(b.name))
 
-const rows = skills.map((s) => {
-  const command = `\`vatras:${s.name}\``
-  // A title overrides the display name but the invocation command must stay visible.
-  const skillCell = s.title ? `${s.title} (${command})` : command
-  return `| ${skillCell} | ${s.operation || '—'} | ${s.description} |`
-})
+const rows = skills.map(
+  (s) => `| \`vatras:${s.name}\` | ${s.operation} | ${s.description} |`,
+)
 
-const body = [
+const table = [
   '| Skill               | Operation | Description                                                   |',
   '| -------------------- | --------- | -------------------------------------------------------------- |',
   ...rows,
@@ -70,7 +66,7 @@ if (startIdx === -1 || endIdx === -1) {
 const next =
   source.slice(0, startIdx + START.length) +
   '\n\n' +
-  body +
+  table +
   '\n\n' +
   source.slice(endIdx)
 

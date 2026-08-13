@@ -1,6 +1,5 @@
 ---
 name: idea
-title: Idea Inbox
 description: Capture an idea in the project's inbox without acting on it.
 operation: Capture
 ---
