@@ -112,3 +112,5 @@ claude --plugin-dir .
   not rewrite it to taste. Correct what is factually wrong and say what changed.
 - British spelling in documentation.
 - Commit and push to `main`.
+- See `docs/content-conventions.md` for rules on writing and generating
+  `content/docs/`, e.g. API skill table column order.

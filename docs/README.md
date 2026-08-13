@@ -15,7 +15,8 @@ established.
 
 ```text
 docs/
-└── README.md    this file
+├── README.md                 this file
+└── content-conventions.md    rules for writing/generating content/docs/
 ```
 
 Add directories as the knowledge exists to fill them: architecture, decisions,
