@@ -3,24 +3,40 @@ title: Idea Inbox
 description: Where a thought goes when it is not ready to be used.
 ---
 
-A notepad that lives with the code.
-
-`IDEAS.md` sits at the root of the repository and holds anything not yet worth
-deciding: half-formed thoughts, questions with no owner, directions that might
-matter later.
-
-It stays with the project rather than in your head, in a separate tool, or in a
-document nobody opens again. And because it is in the repository, an idea here
-can be worked on — questioned, investigated, sharpened — not just stored.
-
-It is a personal notepad, not project context.
+A notepad that lives with the code. `IDEAS.md` sits at the root of the
+repository and holds anything not yet worth deciding: half-formed thoughts,
+questions with no owner, directions that might matter later.
 
 <Callout title="Nothing reads this file">
   An agent will not see anything in `IDEAS.md` on its own. An idea enters the
-  work when you point at one.
+  work when you point at one, and nothing in the inbox has to be pointed at.
 </Callout>
 
-## How an idea is created
+## Explanation
+
+### What is an idea
+
+An entry is an id, a date, and whatever you had in your head at the time.
+
+```md
+## 0023 — 2026-08-13
+
+Vocabulary might need to be per-context.
+```
+
+That is the whole format. The id is what operations are aimed at, and it never
+changes once given.
+
+### Where ideas live
+
+At the root of the repository, beside the code rather than in your head, in a
+separate tool, or in a document nobody opens again. And because it is in the
+repository, an idea here can be worked on — questioned, investigated, sharpened
+— not just stored.
+
+It is a personal notepad, not project context.
+
+### How an idea is created
 
 Most arrive the obvious way — you notice something and write it down before it
 derails what you were doing.
@@ -35,53 +51,29 @@ produced    asking for alternatives returns several
 Ideas can be **output** as well as input. So the inbox is not only where the
 flow starts; it is somewhere the flow puts things.
 
-## Working an idea
+### Working on an idea
 
 Every entry has an id, and an operation is aimed at one: `0023`.
 
-| Operation | Takes | Produces | Skill |
-| --------- | ----- | -------- | ----- |
-| **Capture** | a thought | an entry | `vatras:idea` |
-| **Critique** | an entry | objections, hidden assumptions, alternatives | `skill:critique` |
-| **Investigate** | an entry and its open questions | findings, constraints | `skill:investigate` |
-| **Iterate** | an entry | a sharper entry | `skill:iterate` |
-| **Duplicates** | the whole inbox | entries that are the same idea in different words | `skill:duplicates` |
+Each operation stands alone. An idea can be critiqued without being
+investigated, or sharpened without being critiqued. What they produce is
+written back into the entry, so it says more than it did:
 
-Each stands alone. An idea can be critiqued without being investigated, or
-sharpened without being critiqued.
+```md
+## 0023 — 2026-08-13
+
+Vocabulary might need to be per-context.
+A single root file forces one meaning per word across the whole repository.
+```
 
 Duplicates is the odd one: it takes the inbox rather than an entry. Ideas
 repeat because nobody rereads, and the same thought written twice six weeks
 apart looks like two until they are put side by side.
 
-## The cycle
+Running critique, investigate and iterate as one pass is a flow rather than an
+operation — `skill:develop`.
 
-```text
-capture
-   │
-   ↓
- ┌──────────────────────────┐
- │  critique                │   what is assumed, what breaks it
- │     ↓                    │
- │  investigate             │   can it be done, what constrains it
- │     ↓                    │
- │  iterate ────────────────┘   rewrite it knowing what you now know
- │     │
- └─────↓
-    exit                        planned · merged · dropped
-```
-
-A sharper idea is often worth critiquing again, which is why it loops.
-
-Most entries never enter the cycle at all. That is the design working: an inbox
-where every entry must be processed is a queue, and a queue creates obligation.
-Nothing is lost by leaving an idea alone — what matters resurfaces through the
-work.
-
-Running the three as one pass is a flow rather than an operation —
-`skill:develop`.
-
-## Leaving the inbox
+### When an idea becomes work
 
 An idea leaves when it becomes work, and `skill:plan 0023` is the exit.
 
@@ -103,3 +95,67 @@ Vocabulary might need to be per-context.
 Not every idea leaves that way. Some merge into another entry, some are
 dropped. Both are recorded in place: the id stays, so nothing that referred to
 it is left pointing at a gap.
+
+## API
+
+| Operation | Input | Output | Skill |
+| --------- | ----- | ------ | ----- |
+| **Capture** | a thought | an entry | `vatras:idea` |
+| **Critique** | an entry | objections, hidden assumptions, alternatives | `skill:critique` |
+| **Investigate** | an entry and its open questions | findings, constraints | `skill:investigate` |
+| **Iterate** | an entry | a sharper entry | `skill:iterate` |
+| **Duplicates** | the whole inbox | entries that are the same idea in different words | `skill:duplicates` |
+| **Develop** | an entry | the three above in one pass | `skill:develop` |
+
+## Mental model
+
+An idea is a possibility, not a commitment.
+
+```text
+            a thought
+                │
+             capture
+                │
+                ↓
+ ┌──────────────────────────┐
+ │  critique                │   what is assumed, what breaks it
+ │     ↓                    │
+ │  investigate             │   can it be done, what constrains it
+ │     ↓                    │
+ │  iterate ────────────────┘   rewrite it knowing what you now know
+ │     │
+ └─────↓
+     decide
+        │
+        ├──→ planned ──→ build ──→ verify
+        ├──→ merged
+        └──→ dropped
+```
+
+A sharper idea is often worth critiquing again, which is why it loops.
+
+The diagram is not a workflow to comply with. It is a model of what can happen,
+and most entries never enter it at all. That is the design working: an inbox
+where every entry must be processed is a queue, and a queue creates obligation.
+Nothing is lost by leaving an idea alone — what matters resurfaces through the
+work.
+
+The inbox holds one thing and hands off another:
+
+```text
+thought     unwritten, and gone the moment something interrupts you
+idea        written down, and committing to nothing
+plan        a decision to pursue it, and how
+work        the implementation
+```
+
+The inbox owns the second of those. Deciding is where it ends — everything
+after belongs to the methodology, which is why the exit is a plan and not a
+branch.
+
+## Related
+
+- [Methodology](/docs/methodology) — where a planned idea goes next
+- [Context Architecture](/docs/context/context-architecture) — the knowledge the
+  inbox is deliberately excluded from
+- [Primitives](/docs/primitives) — operations that recur beyond the inbox
