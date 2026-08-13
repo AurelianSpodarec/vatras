@@ -44,6 +44,77 @@ An [artefact](/docs/concepts) is knowledge that is loaded and acted on. Nothing
 loads this file, so by that definition it is not one — it is a file in the
 repository, and the distinction holds without needing a special case.
 
+## How an idea is created
+
+Not every idea is typed in deliberately.
+
+```text
+a thought arrives            captured directly — the common case
+something falls out of work  noticed mid-build, parked so it does not derail
+a question has no owner      raised during other work, out of scope for now
+one idea turns out to be two split
+alternatives were requested  the operation produced them
+```
+
+That last path matters: ideas can be **output** as well as input. Asking for
+alternatives to an idea produces new ideas, so the inbox is both the start of
+the flow and a destination of it.
+
+## Working an idea
+
+Every entry has an id, and an operation is aimed at one: `0023`.
+
+| Operation | Takes | Produces | Skill |
+| --------- | ----- | -------- | ----- |
+| **Capture** | a thought | an entry | `vatras:idea` |
+| **Critique** | an entry | objections, hidden assumptions, alternatives | `skill:critique` |
+| **Investigate** | an entry and its open questions | findings, constraints | `skill:investigate` |
+| **Iterate** | an entry | a sharper entry | `skill:iterate` |
+
+A name written as `skill:name` is a placeholder. The operation is understood,
+the skill is not built, and the name will change when it is.
+
+Each stands alone. An idea can be critiqued without being investigated, or
+sharpened without being critiqued.
+
+## The cycle
+
+```text
+capture
+   │
+   ↓
+ ┌──────────────────────────┐
+ │  critique                │   what is assumed, what breaks it
+ │     ↓                    │
+ │  investigate             │   can it be done, what constrains it
+ │     ↓                    │
+ │  iterate ────────────────┘   rewrite it knowing what you now know
+ │     │
+ └─────↓
+    resolve                     becomes work · merges · is dropped
+```
+
+It is a cycle rather than a sequence. Critique raises a question, investigation
+answers it, iteration rewrites the idea — and a sharper idea may be worth
+critiquing again.
+
+Most entries never enter the cycle. That is the design working, not failing: an
+inbox where every entry must be processed is a queue, and a queue creates
+obligation.
+
+Running the three together is a flow rather than a single operation —
+`skill:develop` — where naming one path through the cycle saves choosing each
+move individually.
+
+## What exists so far
+
+Only capture. `vatras:idea` is built. Everything marked `skill:` is named here
+because the cycle is incomplete without it, not because it can be used.
+
+Whether these operations belong to ideas alone, or are the same operations
+aimed at a smaller subject, is deliberately left open — which is part of why
+the placeholder names carry no prefix.
+
 ## What does not belong here
 
 An inbox works because entries cost nothing to add and nothing to leave. It
