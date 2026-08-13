@@ -31,7 +31,9 @@ work, and before deciding what else to read.
 
 - When your output names a project concept — a plan, a commit message, a
   heading, an issue title — use the canonical term.
-- Never use a term listed under `_Avoid_`.
+- Never use a term listed under `_Avoid_` as a name for the concept it sits
+  under. The entry rules that word out for that concept only; it does not ban
+  the word everywhere, and the same word may be canonical for something else.
 - If the concept you need has no term, treat that as a signal. Either the
   language is being invented and should be reconsidered, or there is a real
   gap and it should be raised.
