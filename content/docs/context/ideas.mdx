@@ -12,53 +12,20 @@ matter later.
 
 Nothing reads it.
 
-## Why it is excluded
-
-An agent reading *"idea: maybe this should be event-sourced"* has no way to
-tell a stray thought from a settled decision. Both are sentences in a file in
-the repository.
-
-Put unevaluated ideas into loaded context and they quietly become assumptions.
-The agent starts reasoning from them, and nobody notices, because nobody
-decided anything.
-
-Excluding the file is what makes it safe to write in. Capture commits to
-nothing, so anything can be captured.
-
-## The three load states
-
-Vocabulary is read on every operation. Most context is read when it becomes
-relevant. Ideas are read only when someone asks about their ideas.
-
-```text
-Always        Vocabulary
-When relevant Decisions, research, requirements
-Never         Ideas
-```
-
-That last row is not an oversight in the architecture. It is a position in it.
-
-## It is not an artefact
-
-An [artefact](/docs/concepts) is knowledge that is loaded and acted on. Nothing
-loads this file, so by that definition it is not one — it is a file in the
-repository, and the distinction holds without needing a special case.
-
 ## How an idea is created
 
-Not every idea is typed in deliberately.
+Most arrive the obvious way — you notice something and write it down before it
+derails what you were doing.
+
+Two others matter more than they look:
 
 ```text
-a thought arrives            captured directly — the common case
-something falls out of work  noticed mid-build, parked so it does not derail
-a question has no owner      raised during other work, out of scope for now
-one idea turns out to be two split
-alternatives were requested  the operation produced them
+split       one idea turns out to be two
+produced    asking for alternatives returns several
 ```
 
-That last path matters: ideas can be **output** as well as input. Asking for
-alternatives to an idea produces new ideas, so the inbox is both the start of
-the flow and a destination of it.
+Ideas can be **output** as well as input. So the inbox is not only where the
+flow starts; it is somewhere the flow puts things.
 
 ## Working an idea
 
@@ -91,26 +58,41 @@ capture
     resolve                     becomes work · merges · is dropped
 ```
 
-It is a cycle rather than a sequence. Critique raises a question, investigation
-answers it, iteration rewrites the idea — and a sharper idea may be worth
-critiquing again.
+A sharper idea is often worth critiquing again, which is why it loops.
 
-Most entries never enter the cycle. That is the design working, not failing: an
-inbox where every entry must be processed is a queue, and a queue creates
-obligation.
+Most entries never enter the cycle at all. That is the design working: an inbox
+where every entry must be processed is a queue, and a queue creates obligation.
 
-Running the three together is a flow rather than a single operation —
-`skill:develop` — where naming one path through the cycle saves choosing each
-move individually.
+Running the three as one pass is a flow rather than an operation —
+`skill:develop`.
 
 ## What exists so far
 
-Only capture. `vatras:idea` is built. Everything marked `skill:` is named here
+Only capture. `vatras:idea` is built; everything marked `skill:` is named
 because the cycle is incomplete without it, not because it can be used.
 
 Whether these operations belong to ideas alone, or are the same operations
-aimed at a smaller subject, is deliberately left open — which is part of why
-the placeholder names carry no prefix.
+aimed at a smaller subject, is deliberately left open.
+
+## Why it is excluded
+
+An agent reading *"idea: maybe this should be event-sourced"* has no way to
+tell a stray thought from a settled decision. Both are sentences in a file in
+the repository.
+
+Put unevaluated ideas into loaded context and they quietly become assumptions.
+The agent starts reasoning from them, and nobody notices, because nobody
+decided anything.
+
+Excluding the file is what makes it safe to write in. Capture commits to
+nothing, so anything can be captured — which is why the inbox occupies its own
+position in how context is loaded:
+
+```text
+Always        Vocabulary
+When relevant Decisions, research, requirements
+Never         Ideas
+```
 
 ## What does not belong here
 
