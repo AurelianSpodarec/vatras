@@ -29,3 +29,17 @@ See [Skills Map](/docs/skills/map) for how a skill is found and loaded.
 This section is generated from `skills/*/SKILL.md` frontmatter — run
 `pnpm skills:sync` after adding, renaming or removing a skill. Do not edit it
 by hand; edit the skill's frontmatter instead.
+
+The full Idea Inbox API, from [Idea Inbox](/docs/context/ideas):
+
+| Operation | Input | Output | Skill |
+| --------- | ----- | ------ | ----- |
+| **Capture** | a thought | an entry | `vatras:idea` |
+| **Critique** | an entry | objections, hidden assumptions, alternatives | `vatras:critique` |
+| **Investigate** | an entry + open questions | findings, constraints | `vatras:investigate` |
+| **Iterate** | an entry | a sharper entry | `vatras:iterate` |
+| **Duplicates** | the inbox | duplicate ideas | `vatras:duplicates` |
+| **Develop** | an entry | critique + investigation + iteration | `vatras:develop` |
+
+Only `vatras:idea` exists as a skill today; the rest are documented but not
+yet built.
