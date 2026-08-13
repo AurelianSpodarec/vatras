@@ -68,7 +68,7 @@ capture
  │  iterate ────────────────┘   rewrite it knowing what you now know
  │     │
  └─────↓
-    resolve                     becomes work · merges · is dropped
+    exit                        planned · merged · dropped
 ```
 
 A sharper idea is often worth critiquing again, which is why it loops.
@@ -80,3 +80,26 @@ work.
 
 Running the three as one pass is a flow rather than an operation —
 `skill:develop`.
+
+## Leaving the inbox
+
+An idea leaves when it becomes work, and `skill:plan 0023` is the exit.
+
+It goes to a plan rather than straight to an implementation because an idea
+says what you want and never how. From there it joins the ordinary path through
+[the methodology](/docs/methodology) — build, then verify — and stops being an
+inbox concern.
+
+The entry is stamped with where it went, so rereading the inbox tells you what
+is still live:
+
+```md
+## 0023 — 2026-08-13 — planned
+
+Vocabulary might need to be per-context.
+→ plans/0004-per-context-vocabulary.md
+```
+
+Not every idea leaves that way. Some merge into another entry, some are
+dropped. Both are recorded in place: the id stays, so nothing that referred to
+it is left pointing at a gap.
