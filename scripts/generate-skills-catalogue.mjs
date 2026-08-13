@@ -1,51 +1,42 @@
 #!/usr/bin/env node
-// Regenerates the skills tables in content/docs/skills/index.mdx from
-// skills/*/SKILL.md frontmatter. skills/ is the source of truth; run via
-// `pnpm skills:sync`, or automatically before dev/build. A skill with
-// `group: idea` in its frontmatter is listed under the Idea Inbox section
-// instead of the general Available table.
+// Regenerates two generated blocks from their sources of truth; run via
+// `pnpm skills:sync`, or automatically before dev/build.
+//
+//  - content/docs/skills/index.mdx      <- skills/*/SKILL.md frontmatter,
+//                                           plus scripts/idea-inbox-operations.mjs
+//                                           for Idea Inbox operations with no
+//                                           skill yet
+//  - content/docs/context/ideas.mdx     <- scripts/idea-inbox-operations.mjs
+//
+// A skill with `group: idea` in its frontmatter is listed under the Idea
+// Inbox section instead of the general Available table.
 
 import { readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { IDEA_INBOX_OPERATIONS } from './idea-inbox-operations.mjs'
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)))
 const skillsDir = path.join(root, 'skills')
-const indexPath = path.join(root, 'content/docs/skills/index.mdx')
+const skillsIndexPath = path.join(root, 'content/docs/skills/index.mdx')
+const ideasPath = path.join(root, 'content/docs/context/ideas.mdx')
 
-const START = '{/* skills:start */}'
-const END = '{/* skills:end */}'
-
-// Idea Inbox operations documented in content/docs/context/ideas.mdx that
-// have no skills/<name>/SKILL.md yet. Listed here so the catalogue shows the
-// full documented API; drop an entry once its skill is actually built.
-const PLANNED_IDEA_SKILLS = [
-  {
-    name: 'critique',
-    operation: 'Critique',
-    description: 'Surface objections, hidden assumptions and alternatives for an idea.',
-  },
-  {
-    name: 'investigate',
-    operation: 'Investigate',
-    description: "Investigate an idea's open questions and return findings and constraints.",
-  },
-  {
-    name: 'iterate',
-    operation: 'Iterate',
-    description: 'Sharpen an idea into a clearer entry.',
-  },
-  {
-    name: 'duplicates',
-    operation: 'Duplicates',
-    description: 'Find duplicate ideas across the inbox.',
-  },
-  {
-    name: 'develop',
-    operation: 'Develop',
-    description: 'Run critique, investigation and iteration on an idea together.',
-  },
-]
+function replaceBetweenMarkers(filePath, start, end, body) {
+  const source = readFileSync(filePath, 'utf8')
+  const startIdx = source.indexOf(start)
+  const endIdx = source.indexOf(end)
+  if (startIdx === -1 || endIdx === -1) {
+    throw new Error(`${filePath} is missing ${start} / ${end} markers`)
+  }
+  const next =
+    source.slice(0, startIdx + start.length) + '\n\n' + body + '\n\n' + source.slice(endIdx)
+  if (next !== source) {
+    writeFileSync(filePath, next)
+    console.log(`${path.relative(root, filePath)} regenerated`)
+  } else {
+    console.log(`${path.relative(root, filePath)} already up to date`)
+  }
+}
 
 function parseFrontmatter(source, skillPath) {
   const match = source.match(/^---\r?\n([\s\S]*?)\r?\n---/)
@@ -79,7 +70,7 @@ const skills = readdirSync(skillsDir, { withFileTypes: true })
   })
   .sort((a, b) => a.name.localeCompare(b.name))
 
-const table = (rows) =>
+const skillsTable = (rows) =>
   [
     '| Skill               | Operation | Description                                                   |',
     '| -------------------- | --------- | -------------------------------------------------------------- |',
@@ -90,35 +81,31 @@ const builtIdeaSkills = skills.filter((s) => s.group === 'idea')
 const otherSkills = skills.filter((s) => s.group !== 'idea')
 
 const builtNames = new Set(builtIdeaSkills.map((s) => s.name))
-const ideaSkills = [
-  ...builtIdeaSkills,
-  ...PLANNED_IDEA_SKILLS.filter((s) => !builtNames.has(s.name)),
-]
+const plannedIdeaSkills = IDEA_INBOX_OPERATIONS.filter((op) => !builtNames.has(op.skill)).map(
+  (op) => ({ name: op.skill, operation: op.operation, description: op.description }),
+)
+const ideaSkills = [...builtIdeaSkills, ...plannedIdeaSkills]
 
-const body = [
-  table(otherSkills),
-  ideaSkills.length > 0 ? `### Idea Inbox\n\n${table(ideaSkills)}` : null,
+const skillsBody = [
+  skillsTable(otherSkills),
+  ideaSkills.length > 0 ? `### Idea Inbox\n\n${skillsTable(ideaSkills)}` : null,
 ]
   .filter(Boolean)
   .join('\n\n')
 
-const source = readFileSync(indexPath, 'utf8')
-const startIdx = source.indexOf(START)
-const endIdx = source.indexOf(END)
-if (startIdx === -1 || endIdx === -1) {
-  throw new Error(`${indexPath} is missing ${START} / ${END} markers`)
-}
+replaceBetweenMarkers(skillsIndexPath, '{/* skills:start */}', '{/* skills:end */}', skillsBody)
 
-const next =
-  source.slice(0, startIdx + START.length) +
-  '\n\n' +
-  body +
-  '\n\n' +
-  source.slice(endIdx)
+const ideaApiTable = [
+  '| Operation | Input | Output | Skill |',
+  '| --------- | ----- | ------ | ----- |',
+  ...IDEA_INBOX_OPERATIONS.map(
+    (op) => `| **${op.operation}** | ${op.input} | ${op.output} | \`vatras:${op.skill}\` |`,
+  ),
+].join('\n')
 
-if (next !== source) {
-  writeFileSync(indexPath, next)
-  console.log('content/docs/skills/index.mdx regenerated from skills/*/SKILL.md')
-} else {
-  console.log('content/docs/skills/index.mdx already up to date')
-}
+replaceBetweenMarkers(
+  ideasPath,
+  '{/* idea-inbox-api:start */}',
+  '{/* idea-inbox-api:end */}',
+  ideaApiTable,
+)

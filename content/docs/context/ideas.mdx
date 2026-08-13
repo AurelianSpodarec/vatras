@@ -14,6 +14,8 @@ questions with no owner, directions that might matter later.
 
 ## API
 
+{/* idea-inbox-api:start */}
+
 | Operation | Input | Output | Skill |
 | --------- | ----- | ------ | ----- |
 | **Capture** | a thought | an entry | `vatras:idea` |
@@ -22,6 +24,11 @@ questions with no owner, directions that might matter later.
 | **Iterate** | an entry | a sharper entry | `vatras:iterate` |
 | **Duplicates** | the inbox | duplicate ideas | `vatras:duplicates` |
 | **Develop** | an entry | critique + investigation + iteration | `vatras:develop` |
+
+{/* idea-inbox-api:end */}
+
+This table is generated from `scripts/idea-inbox-operations.mjs` — run
+`pnpm skills:sync` after changing an operation. Do not edit it by hand.
 
 Each operation is independent. Use one operation directly or combine them with
 `vatras:develop`.
