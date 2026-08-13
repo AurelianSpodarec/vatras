@@ -1,6 +1,7 @@
 ---
 name: init
 description: Initialise a repository for Vatras.
+operation: Establish
 ---
 
 # Vatras Init

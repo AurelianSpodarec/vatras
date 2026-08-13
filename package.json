@@ -5,11 +5,14 @@
   "type": "module",
   "sideEffects": false,
   "scripts": {
+    "predev": "pnpm skills:sync",
     "dev": "vite dev",
+    "prebuild": "pnpm skills:sync",
     "build": "vite build",
     "start": "vite preview",
     "preview": "vite preview",
-    "types:check": "tsc --noEmit"
+    "types:check": "tsc --noEmit",
+    "skills:sync": "node scripts/generate-skills-catalogue.mjs"
   },
   "dependencies": {
     "@tanstack/react-router": "1.170.25",

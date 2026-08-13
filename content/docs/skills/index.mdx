@@ -11,11 +11,16 @@ See [Skills Map](/docs/skills/map) for how a skill is found and loaded.
 
 ## Available
 
-| Skill               | Operation | Description                                                   |
-| ------------------- | --------- | -------------------------------------------------------------- |
-| `vatras:init`       | Establish | Initialise a repository for Vatras.                            |
-| `vatras:vocabulary` | —         | Establish and maintain the project's ubiquitous language.      |
-| `vatras:idea`       | Capture   | Capture an idea in the project's inbox without acting on it.   |
+{/* skills:start */}
 
-This list matches `skills/` as it stands. A new directory under `skills/`
-with a `SKILL.md` adds a skill; nothing here is generated automatically.
+| Skill               | Operation | Description                                                   |
+| -------------------- | --------- | -------------------------------------------------------------- |
+| `vatras:idea` | Capture | Capture an idea in the project's inbox without acting on it. |
+| `vatras:init` | Establish | Initialise a repository for Vatras. |
+| `vatras:vocabulary` | — | Establish and maintain the project's ubiquitous language. |
+
+{/* skills:end */}
+
+This table is generated from `skills/*/SKILL.md` frontmatter — run
+`pnpm skills:sync` after adding, renaming or removing a skill. Do not edit it
+by hand; edit the skill's frontmatter instead.
