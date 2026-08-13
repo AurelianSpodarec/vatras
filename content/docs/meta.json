@@ -1,6 +1,7 @@
 {
   "pages": [
     "index",
+    "getting-started",
     "dictionary",
     "concepts",
     "context",

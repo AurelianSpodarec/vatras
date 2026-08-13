@@ -1,0 +1,86 @@
+---
+title: Getting Started
+description: How the pieces fit together on a real project.
+---
+
+Vatras is not a dependency. There is nothing to install into your application,
+and it does not run at build time.
+
+What it changes is the shape of the repository around your code — what an
+agent reads, in what order, and what it writes back.
+
+## The shape
+
+An agent arriving in a repository has the codebase and nothing else. Vatras
+gives it a path from the door to the work.
+
+```text
+AI Agent
+    ↓
+Agent Entry Point        AGENTS.md, plus an adapter per agent
+    ↓
+Context                  what to read, and when
+    ↓
+Project Model            what this project actually is
+    ↓
+Codebase
+```
+
+Each step narrows. The entry point says where knowledge lives, the context
+architecture holds it, and the project model is the understanding an agent
+reasons from once it has read enough.
+
+## What a Vatras repository looks like
+
+```text
+AGENTS.md          the entry point — points at knowledge, does not contain it
+CLAUDE.md          an adapter, containing only @AGENTS.md
+VOCABULARY.md      the project's language, read on every operation
+docs/              persistent knowledge: decisions, research, requirements
+src/               your code
+```
+
+`vatras:init` establishes this. It reads the repository to work out which
+agents it is already set up for, confirms what it found, and writes the entry
+point plus one adapter per agent. It does not overwrite what is already there.
+
+## Two kinds of context
+
+Not everything is read every time.
+
+**Vocabulary is always loaded.** It sits at the root and is read before the
+work starts, whatever the task. An agent cannot judge which decisions or
+research matter until it knows what the words mean — so the language has to
+arrive first.
+
+That is also why it stays small. Everything in it is paid for on every
+operation, which is what the exclusion rules exist to protect.
+
+**Everything else is fetched when relevant.** A decision record about the
+database is read when working near the database, and not otherwise.
+
+## What you actually do
+
+Work is made of operations — things done to project knowledge. Some are
+one-offs, like initialising a repository. The ones worth naming are the
+[primitives](/docs/primitives): operations you can reach for at any point,
+which larger work is composed from.
+
+[Model Interrogation](/docs/primitives/model-interrogation) is the clearest
+example. You challenge the current understanding of the project, find the
+assumptions nobody had stated, and the model improves. It is not a stage — you
+can do it before writing anything, halfway through, or after an implementation
+proves the original understanding wrong.
+
+Terminology settles as a by-product. When interrogation reveals that two words
+have been used for one concept, that resolution belongs in the vocabulary, and
+it is written down while the reason is still fresh.
+
+## Where to go next
+
+- [Concepts](/docs/concepts) — the kinds of thing Vatras is made of.
+- [Context](/docs/context) — the entry point and the knowledge behind it.
+- [Project Model](/docs/project-model) — the understanding an agent reasons from.
+
+The later stages — planning, implementation and verification — are still being
+worked out, and are not documented yet.
