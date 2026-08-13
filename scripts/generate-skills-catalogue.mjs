@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Regenerates the per-skill sections under "## Available" in
+// Regenerates the skills table under "## Available" in
 // content/docs/skills/index.mdx from skills/*/SKILL.md frontmatter.
 // skills/ is the source of truth; run via `pnpm skills:sync`, or
 // automatically before dev/build.
@@ -47,19 +47,18 @@ const skills = readdirSync(skillsDir, { withFileTypes: true })
   })
   .sort((a, b) => a.name.localeCompare(b.name))
 
-const sections = skills.map((s) => {
+const rows = skills.map((s) => {
   const command = `\`vatras:${s.name}\``
-  const heading = s.title || command
-  // When title overrides the heading, keep the invocation command visible in the body.
-  const lead = s.title
-    ? `${command}${s.operation ? ` — ${s.operation}` : ''}. `
-    : s.operation
-      ? `${s.operation}. `
-      : ''
-  return `### ${heading}\n\n${lead}${s.description}`
+  // A title overrides the display name but the invocation command must stay visible.
+  const skillCell = s.title ? `${s.title} (${command})` : command
+  return `| ${skillCell} | ${s.operation || '—'} | ${s.description} |`
 })
 
-const body = sections.join('\n\n')
+const body = [
+  '| Skill               | Operation | Description                                                   |',
+  '| -------------------- | --------- | -------------------------------------------------------------- |',
+  ...rows,
+].join('\n')
 
 const source = readFileSync(indexPath, 'utf8')
 const startIdx = source.indexOf(START)
