@@ -50,6 +50,36 @@ function parseFrontmatter(source, skillPath) {
   return fields
 }
 
+const KNOWN_GROUPS = ['idea']
+const IDEA_OPERATION_FIELDS = ['skill', 'operation', 'input', 'output', 'description']
+
+function validateIdeaInboxOperations(ops) {
+  if (!Array.isArray(ops) || ops.length === 0) {
+    throw new Error('idea-inbox-operations.mjs must export a non-empty IDEA_INBOX_OPERATIONS array')
+  }
+  const seenSkills = new Set()
+  const seenOperations = new Set()
+  for (const [i, op] of ops.entries()) {
+    for (const field of IDEA_OPERATION_FIELDS) {
+      if (typeof op[field] !== 'string' || op[field].trim() === '') {
+        throw new Error(
+          `idea-inbox-operations.mjs entry ${i} (${op.skill ?? '?'}) is missing required field "${field}"`,
+        )
+      }
+    }
+    if (seenSkills.has(op.skill)) {
+      throw new Error(`idea-inbox-operations.mjs has a duplicate skill "${op.skill}"`)
+    }
+    seenSkills.add(op.skill)
+    if (seenOperations.has(op.operation)) {
+      throw new Error(`idea-inbox-operations.mjs has a duplicate operation "${op.operation}"`)
+    }
+    seenOperations.add(op.operation)
+  }
+}
+
+validateIdeaInboxOperations(IDEA_INBOX_OPERATIONS)
+
 const skills = readdirSync(skillsDir, { withFileTypes: true })
   .filter((entry) => entry.isDirectory())
   .map((entry) => {
@@ -64,6 +94,11 @@ const skills = readdirSync(skillsDir, { withFileTypes: true })
     if (name !== entry.name) {
       throw new Error(
         `${skillPath} frontmatter name "${name}" does not match its directory "${entry.name}"`,
+      )
+    }
+    if (group && !KNOWN_GROUPS.includes(group)) {
+      throw new Error(
+        `${skillPath} has unknown group "${group}" — expected one of: ${KNOWN_GROUPS.join(', ')}`,
       )
     }
     return { name, description, operation: operation || '—', group: group || null }
