@@ -1,0 +1,71 @@
+---
+title: Skills
+description: How an operation is taught to an AI agent.
+---
+
+A skill is an [artefact](/docs/concepts) that encodes an
+[operation](/docs/concepts). It is a file, so it persists and is loaded like
+any other artefact; what makes it distinct is its content — instructions for
+performing a particular piece of work.
+
+The operation is the activity. The skill is how an agent is taught to perform
+it.
+
+## What is built
+
+| Skill | Operation |
+| ----- | --------- |
+| `vatras:init` | Initialise a repository for Vatras |
+| `vatras:vocabulary` | Establish and maintain the project's vocabulary |
+| `vatras:idea` | Capture an idea in the inbox without acting on it |
+
+Everything else named in the documentation is intended and unwritten. A skill
+that does not exist yet is a gap, not a feature.
+
+## Where a skill lives
+
+Each skill is a directory holding a `SKILL.md`:
+
+```text
+skills/
+└── <name>/
+    └── SKILL.md
+```
+
+The file opens with frontmatter naming the skill and saying what it does:
+
+```md
+---
+name: idea
+description: Capture an idea in the project's inbox without acting on it.
+---
+```
+
+The description is what an agent reads when deciding whether the skill applies.
+It is the part most worth getting right.
+
+## How a skill is invoked
+
+This repository is a Claude Code plugin named `vatras`, so skills are reached
+by prefix:
+
+```text
+vatras:<name>
+```
+
+Installing the plugin clones the remote, which means editing a skill here has
+no effect on an installed copy. To run the skills in the working tree:
+
+```bash
+claude --plugin-dir .
+```
+
+## What belongs in one
+
+A skill says what the operation is, when to use it, what context it needs, how
+it is performed, and what it produces.
+
+What it does not do is explain the idea behind the operation. That belongs in
+the documentation, which is read by people. A skill is read by an agent about
+to do the work, and everything in it competes for attention with the
+instructions that matter.
