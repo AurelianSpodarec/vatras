@@ -1,0 +1,40 @@
+---
+title: Skills Map
+description: The routing layer. Which skills are relevant to this work?
+---
+
+The skills map is the routing layer.
+
+Which skills are relevant to this work?
+
+This is where that gets defined — one entry per family of work, when it
+applies, and which skills belong to it:
+
+```text
+Ideas
+  when: working with IDEAS.md or an idea
+  skills: idea, critique, investigate, iterate, develop
+
+Planning
+  when: creating or working on a plan
+  skills: plan
+```
+
+An agent checks the map before loading anything. If the current work matches
+an entry, only the skills listed for that entry are candidates for loading —
+everything else in `skills/` stays unread.
+
+## Rules
+
+- **Do not load unrelated skills.** A skill being present in the repository
+  does not make it relevant.
+- **Route from the work.** Determine what the developer is trying to do
+  before loading anything.
+- **Load only what is needed.** Once a relevant skill is identified, load
+  that skill and no other.
+- **Do not explore unrelated directories.** If a piece of work has nothing
+  to do with ideas, do not read `skills/idea/`.
+- **Do not load speculatively.** A skill loads because the work requires it,
+  not because it might become useful later.
+
+> Skills should be discoverable without being loaded.
