@@ -1,0 +1,59 @@
+---
+title: Ideas
+description: An inbox that is deliberately never loaded.
+---
+
+Most project knowledge exists to be used. An idea inbox exists so that a
+thought can be put down without being used at all.
+
+`IDEAS.md` sits at the root of the repository and holds anything not yet worth
+deciding: half-formed thoughts, questions with no owner, directions that might
+matter later.
+
+Nothing reads it.
+
+## Why it is excluded
+
+An agent reading *"idea: maybe this should be event-sourced"* has no way to
+tell a stray thought from a settled decision. Both are sentences in a file in
+the repository.
+
+Put unevaluated ideas into loaded context and they quietly become assumptions.
+The agent starts reasoning from them, and nobody notices, because nobody
+decided anything.
+
+Excluding the file is what makes it safe to write in. Capture commits to
+nothing, so anything can be captured.
+
+## The three load states
+
+Vocabulary is read on every operation. Most context is read when it becomes
+relevant. Ideas are read only when someone asks about their ideas.
+
+```text
+Always        Vocabulary
+When relevant Decisions, research, requirements
+Never         Ideas
+```
+
+That last row is not an oversight in the architecture. It is a position in it.
+
+## It is not an artefact
+
+An [artefact](/docs/concepts) is knowledge that is loaded and acted on. Nothing
+loads this file, so by that definition it is not one — it is a file in the
+repository, and the distinction holds without needing a special case.
+
+## What does not belong here
+
+An inbox works because entries cost nothing to add and nothing to leave. It
+stops working when it starts carrying weight:
+
+- decisions — those belong where they can be found and cited
+- plans — an idea that has become work is no longer an idea
+- terminology — a term that has settled belongs in the
+  [vocabulary](/docs/context/vocabulary)
+- anything an agent needs in order to do its job
+
+If something in the inbox turns out to matter, it will resurface through the
+work. Then it moves somewhere that is read.
