@@ -1,7 +1,9 @@
 #!/usr/bin/env node
-// Regenerates the skills table in content/docs/skills/index.mdx from
+// Regenerates the skills tables in content/docs/skills/index.mdx from
 // skills/*/SKILL.md frontmatter. skills/ is the source of truth; run via
-// `pnpm skills:sync`, or automatically before dev/build.
+// `pnpm skills:sync`, or automatically before dev/build. A skill with
+// `group: idea` in its frontmatter is listed under the Idea Inbox section
+// instead of the general Available table.
 
 import { readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
@@ -30,7 +32,7 @@ const skills = readdirSync(skillsDir, { withFileTypes: true })
   .filter((entry) => entry.isDirectory())
   .map((entry) => {
     const skillPath = `skills/${entry.name}/SKILL.md`
-    const { name, description, operation } = parseFrontmatter(
+    const { name, description, operation, group } = parseFrontmatter(
       readFileSync(path.join(skillsDir, entry.name, 'SKILL.md'), 'utf8'),
       skillPath,
     )
@@ -42,19 +44,26 @@ const skills = readdirSync(skillsDir, { withFileTypes: true })
         `${skillPath} frontmatter name "${name}" does not match its directory "${entry.name}"`,
       )
     }
-    return { name, description, operation: operation || '—' }
+    return { name, description, operation: operation || '—', group: group || null }
   })
   .sort((a, b) => a.name.localeCompare(b.name))
 
-const rows = skills.map(
-  (s) => `| \`vatras:${s.name}\` | ${s.operation} | ${s.description} |`,
-)
+const table = (rows) =>
+  [
+    '| Skill               | Operation | Description                                                   |',
+    '| -------------------- | --------- | -------------------------------------------------------------- |',
+    ...rows.map((s) => `| \`vatras:${s.name}\` | ${s.operation} | ${s.description} |`),
+  ].join('\n')
 
-const table = [
-  '| Skill               | Operation | Description                                                   |',
-  '| -------------------- | --------- | -------------------------------------------------------------- |',
-  ...rows,
-].join('\n')
+const ideaSkills = skills.filter((s) => s.group === 'idea')
+const otherSkills = skills.filter((s) => s.group !== 'idea')
+
+const body = [
+  table(otherSkills),
+  ideaSkills.length > 0 ? `### Idea Inbox\n\n${table(ideaSkills)}` : null,
+]
+  .filter(Boolean)
+  .join('\n\n')
 
 const source = readFileSync(indexPath, 'utf8')
 const startIdx = source.indexOf(START)
@@ -66,7 +75,7 @@ if (startIdx === -1 || endIdx === -1) {
 const next =
   source.slice(0, startIdx + START.length) +
   '\n\n' +
-  table +
+  body +
   '\n\n' +
   source.slice(endIdx)
 
