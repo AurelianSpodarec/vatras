@@ -1,0 +1,87 @@
+---
+title: Methodology
+description: What happens when you build software with Vatras, and in what order.
+---
+
+A set of moves is not a process. Vatras names operations so they can be reached
+for deliberately, and arranges them so the work leaves something behind.
+
+## The loop
+
+```text
+              Establish              once per repository
+                  ↓
+              Understand             what is this project, really
+                  ↓
+               Decide                record what was hard to reverse
+                  ↓
+                Plan
+                  ↓
+                Build
+                  ↓
+               Verify                is this what we intended
+                  ↓
+              Feed back
+                  │
+    ┌─────────────┘
+    ↓
+Persistent context ──→ the next pass starts better informed
+```
+
+The return arrow is the part that matters. A pass that changes no context has
+taught the project nothing, and the same ground gets covered again next time.
+
+## The stages
+
+**Establish** puts the surface in place — the [agent entry
+point](/docs/context/agent-entry-point), its adapters, and the root of the
+[Context Architecture](/docs/context/context-architecture). It runs once.
+
+**Understand** forms a model of the project and then attacks it. Read what is
+already there, propose an understanding, challenge it, investigate what the
+challenge exposes. Terminology settles along the way and is recorded as it
+does.
+
+**Decide** records the choices that would be costly to reverse, along with the
+reasoning behind them. Reasoning that is not written down gets re-derived
+later, usually worse.
+
+**Plan** turns understanding into intended work. The plan is an artefact;
+where it lives — markdown, an issue tracker, whatever the project already uses
+— is not Vatras's concern.
+
+**Build** implements against the plan, with the vocabulary and decisions
+loaded, so the work uses the project's own language rather than inventing
+parallel names.
+
+**Verify** asks whether what was built is what was intended. That is a
+different question from whether it runs.
+
+**Feed back** decides what the pass revealed and where it belongs. A failure
+that produces no change to the context will happen again.
+
+## Primitives are not stages
+
+The loop describes where work usually goes. It does not describe what you are
+allowed to do next.
+
+A stage is a position in the process. A [primitive](/docs/primitives) is a move
+available at any position. Challenging the model is not the third step — it is
+worth doing before anything is written, halfway through building, and again
+after an implementation proves the original understanding wrong.
+
+```text
+Stages       ordered, and only by default
+Primitives   available at any point, and what stages are made of
+```
+
+A methodology that forbids moves is a process to comply with. One that names
+them is a vocabulary for work.
+
+## What is built so far
+
+Establish exists as `vatras:init`. Understand is partly named — its operations
+have names, and only vocabulary has a skill behind it.
+
+Everything from Decide onwards is unbuilt. The stages are named here because
+the loop is incomplete without them, not because they are ready to use.

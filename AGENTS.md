@@ -19,6 +19,7 @@ describes it.
 | `research/`     | Investigation into open questions                           | Exploratory              |
 | `docs/`         | Context Architecture for working on *this* repository       | Authoritative            |
 | `skills/`       | Vatras skills, one directory each, defined by `SKILL.md`     | Authoritative            |
+| `IDEAS.md`      | Inbox of unevaluated ideas                                  | Not context — do not read unless asked |
 
 Read `content/docs/` for what Vatras is, `proposals/` for why. Proposals are
 thinking in progress and may contradict the published docs; the published docs
