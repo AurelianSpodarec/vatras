@@ -18,8 +18,8 @@ Establish the initial AI development surface for a repository.
 2. Otherwise, inspect the repository: its layout, its tooling, and what it
    already says about itself.
 3. Detect which AI coding agents it is set up for, using the evidence below.
-4. Work out what the project is, using the evidence below. Ask only if
-   inspection leaves it unresolved.
+4. Ask what the project is, in one sentence. See below for when to infer
+   instead.
 5. Draft `AGENTS.md` and the adapters, and present the actual draft — not a
    summary of what was detected — for confirmation before writing. If there
    is nobody to answer, proceed with what was detected and say so in the
@@ -55,12 +55,16 @@ add adapters when an agent appears.
 
 ## Determining what the project is
 
-Infer it before asking, in this order: a `README`, a package manifest's
-description field (`package.json`, `Cargo.toml`, `pyproject.toml`, and
-similar), then the repository's own layout and naming.
+Ask, rather than infer. This is not the same case as agent detection: file
+presence is a fact, reading it first is free reliability. A `README` or a
+manifest's description field is prose someone wrote once and may never have
+revisited — treating it as ground truth risks carrying forward something
+stale or aspirational, and it still has to be confirmed with the user either
+way. There's no efficiency gained by guessing first when the guess itself
+isn't reliable.
 
-If none of that settles it, ask for one sentence. Don't guess, and don't
-leave the section blank — a wrong guess is harder to notice than a gap.
+Infer from a `README`, then a package manifest's description field, then the
+repository's layout — in that order — only when there is nobody to ask.
 
 ## Creates
 
