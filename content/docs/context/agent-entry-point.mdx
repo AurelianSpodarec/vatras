@@ -35,6 +35,7 @@ Codebase
 <Files>
   <File name="AGENTS.md" />
   <File name="CLAUDE.md" />
+  <File name="VOCABULARY.md" />
 </Files>
 
 `AGENTS.md` provides the shared repository-level entry point. `CLAUDE.md` is an
@@ -42,9 +43,15 @@ Adapter: it contains exactly `@AGENTS.md`, nothing else. Claude Code reads
 `CLAUDE.md`, not `AGENTS.md`, and `@` is an import that loads the file — a
 markdown link would load nothing.
 
-`vatras:init` creates nothing else. The Context Architecture — `docs/`,
-`VOCABULARY.md`, and everything else — is not scaffolded in advance. It comes
-into being later, one piece at a time, when the subsequent Vatras workflow
-first has something that needs recording.
+`VOCABULARY.md` is created too, but bare — a `# Vocabulary` heading, no terms.
+It is the one exception to "structure only": `AGENTS.md` states it is read
+before every operation, and that rule needs a real file to point at. The
+terms inside it are still content, and still arrive later, one at a time, as
+they're needed.
+
+`vatras:init` creates nothing else. The rest of the Context Architecture —
+`docs/`, `IDEAS.md`, and everything in them — is not scaffolded in advance.
+It comes into being later, one piece at a time, when the subsequent Vatras
+workflow first has something that needs recording.
 
 The agent entry point is the door into the project. [Context Architecture](/docs/context/context-architecture) is what lies beyond it.

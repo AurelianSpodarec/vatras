@@ -35,24 +35,28 @@ reasons from once it has read enough.
 ```text
 AGENTS.md          the entry point — points at knowledge, does not contain it
 CLAUDE.md          an adapter, containing only @AGENTS.md
+VOCABULARY.md      bare at first — just the heading, no terms yet
 src/               your code
 ```
 
 `vatras:init` writes only this much. It reads the repository to work out
 which agents it is already set up for, confirms what it found, and writes the
-entry point plus one adapter per agent. It does not overwrite what is already
-there.
+entry point, one adapter per agent, and an empty `VOCABULARY.md`. It does not
+overwrite what is already there.
+
+`VOCABULARY.md` is created bare rather than deferred like everything else,
+because it isn't just content — `AGENTS.md` states it's read before every
+operation, and that rule needs a real file to point at from day one. The
+terms inside it are still added later, one at a time, as they're needed.
 
 ```text
-VOCABULARY.md      the project's language, read on every operation
 docs/              persistent knowledge: decisions, research, requirements
 ```
 
-Everything else arrives later, one piece at a time. `VOCABULARY.md` is written
-the first time a term needs a canonical name; `docs/` is written the first
-time something — a decision, a piece of research — needs somewhere durable to
-live. Neither is scaffolded empty in advance: a pointer to something that
-doesn't exist yet is a cost paid on every operation for no benefit.
+Everything else arrives later, one piece at a time. `docs/` is written the
+first time something — a decision, a piece of research — needs somewhere
+durable to live. It isn't scaffolded empty in advance: a pointer to something
+that doesn't exist yet is a cost paid on every operation for no benefit.
 
 ## Two kinds of context
 

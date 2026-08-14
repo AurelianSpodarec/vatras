@@ -38,10 +38,14 @@ done at different times.
 
 `vatras:init` creates the [Agent Entry Point](/docs/context/agent-entry-point)
 and its adapters — the structure a repository needs before an agent can route
-through it at all. It does not create `docs/`, `VOCABULARY.md`, `IDEAS.md`, or
-write a description of what the project is, even though every one of those
-will eventually belong. None of that content is needed for the entry point to
-work, so producing it is not structure's job.
+through it at all. It also creates a bare `VOCABULARY.md`, for a narrower
+reason: `AGENTS.md` states that vocabulary is read before every operation,
+and that rule needs a real file to point at. The file is structure; the terms
+inside it are still content.
+
+`init` does not create `docs/`, `IDEAS.md`, or write a description of what
+the project is. None of that has a protocol depending on it existing, so none
+of it is structure's job to produce in advance.
 
 Content is deferred instead to whichever operation first needs it — a
 decision that needs a home, a term that needs a canonical name, a thought
