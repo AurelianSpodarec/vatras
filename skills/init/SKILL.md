@@ -12,17 +12,25 @@ Establish the initial AI development surface for a repository.
 
 ## Process
 
-1. Inspect the repository.
-2. Detect which AI coding agents it is set up for, using the evidence below.
-3. Identify existing agent instruction files and existing documentation.
-4. Report what was detected and confirm it before writing. If there is nobody
+1. Check whether the Agent Entry Point, its adapters, and a Context
+   Architecture already exist. If all three are present, stop: report that
+   the repository is already established and skip the remaining steps. Do
+   not re-derive what already exists.
+2. Otherwise, inspect the repository.
+3. Detect which AI coding agents it is set up for, using the evidence below.
+4. Identify existing agent instruction files and existing documentation.
+5. Report what was detected and confirm it before writing. If there is nobody
    to answer, proceed with what was detected and say so in the report.
-5. Create or update `AGENTS.md` as the canonical entry point.
-6. Create one adapter per detected agent.
-7. Establish the Context Architecture at `docs/`.
-8. Report the resulting structure.
+6. Create or update `AGENTS.md` as the canonical entry point.
+7. Create one adapter per detected agent.
+8. Establish the Context Architecture at `docs/`.
+9. Report the resulting structure.
 
 Do not overwrite existing project knowledge at any step. Add to it, or ask.
+
+Inspection is scoped to the repository being initialised. Never read files
+outside it — an installed copy of this plugin elsewhere on disk is not part
+of the repository and is not reference material for what to build.
 
 ## Detecting the agent environment
 
