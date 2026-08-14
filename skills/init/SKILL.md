@@ -18,8 +18,8 @@ Establish the initial AI development surface for a repository.
 2. Otherwise, inspect the repository: its layout, its tooling, and what it
    already says about itself.
 3. Detect which AI coding agents it is set up for, using the evidence below.
-4. Ask what the project is, in one sentence. See below for when to infer
-   instead.
+4. Ask what the project is, in one sentence. If there's nobody to answer,
+   leave it out — see below.
 5. Draft `AGENTS.md` and the adapters, and present the actual draft — not a
    summary of what was detected — for confirmation before writing. If there
    is nobody to answer, proceed with what was detected and say so in the
@@ -55,16 +55,17 @@ add adapters when an agent appears.
 
 ## Determining what the project is
 
-Ask, rather than infer. This is not the same case as agent detection: file
-presence is a fact, reading it first is free reliability. A `README` or a
-manifest's description field is prose someone wrote once and may never have
-revisited — treating it as ground truth risks carrying forward something
-stale or aspirational, and it still has to be confirmed with the user either
-way. There's no efficiency gained by guessing first when the guess itself
-isn't reliable.
+Ask, in one sentence. Don't infer it from a `README` or a manifest's
+description field — those are prose someone wrote once and most repositories
+never keep current. This is not the same case as agent detection: file
+presence is a fact; a README's description is someone's characterisation of
+the project, and an easily-stale one.
 
-Infer from a `README`, then a package manifest's description field, then the
-repository's layout — in that order — only when there is nobody to ask.
+A stale or aspirational description stated as fact in `AGENTS.md` is worse
+than no description: a missing section is obviously incomplete and invites a
+fix, while a plausible-sounding wrong one reads as settled and rarely gets
+caught. If there's nobody to ask, leave the section out and say so in the
+report, rather than guess.
 
 ## Creates
 
