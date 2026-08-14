@@ -12,17 +12,18 @@ Establish `AGENTS.md`, one adapter per agent, and `VOCABULARY.md`. Nothing more.
 
 ## Process
 
-1. If `AGENTS.md`, its adapters, and `VOCABULARY.md` all exist, stop and
-   report established.
+1. Check what already exists: `AGENTS.md`, its adapters, `VOCABULARY.md`.
+   All three present → stop, report established. Anything missing →
+   continue, and only draft what's missing (see "When `AGENTS.md` already
+   exists" below).
 2. Check for evidence of agents other than the one running this skill (table
    below). The running agent gets an adapter regardless — that's known, not
    detected.
 3. Check for anything that changes the `AGENTS.md` draft: an existing
    `README`, a naming collision, a stated binding rule.
-4. Draft `AGENTS.md`, the adapter(s), and `VOCABULARY.md`. Check the draft
-   against Verify below before showing it. Show the full text, not a
-   summary, and let the user edit before writing. No one to confirm with →
-   write what was found and say so.
+4. Draft the missing pieces. Check the draft against Verify below before
+   showing it. Show the full text, not a summary, and let the user edit
+   before writing. No one to confirm with → write what was found and say so.
 5. Write the files and report what was created.
 
 Never overwrite existing project knowledge — add to it, or ask.
@@ -55,6 +56,21 @@ the agent something `ls`, `git log`, or the `README` wouldn't already show: a
 naming collision, a binding rule not inferable from the repo (e.g. "never
 merge to `main` without asking"), or an authority conflict between
 equally-credible sources.
+
+## When AGENTS.md already exists
+
+Never rewrite or restructure it, regardless of who wrote it or what shape
+it's in — same rule as any prose that isn't yours: add to it, don't rewrite
+it to taste.
+
+Add only what's structurally missing, appended, never injected at the top:
+
+- No "Project vocabulary" section → append one, and create `VOCABULARY.md`
+  if it doesn't exist.
+- No adapter for an agent in use → create it.
+
+No identity-labelling step. A file named `AGENTS.md` with real content in it
+is already serving as the entry point — annotating that adds nothing.
 
 ## VOCABULARY.md
 
@@ -93,3 +109,5 @@ Before showing the draft, check it against every line:
 - [ ] Every adapter is a pointer only — `CLAUDE.md` is exactly `@AGENTS.md`
 - [ ] Nothing outside `AGENTS.md`, its adapters, and `VOCABULARY.md` was
       created or modified
+- [ ] If `AGENTS.md` already existed, its original content is untouched —
+      only appended to, never rewritten
