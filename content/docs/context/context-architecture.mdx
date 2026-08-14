@@ -30,3 +30,25 @@ This can include:
 The purpose is not to document everything.
 
 The purpose is to make the right knowledge discoverable and persistent for the agent.
+
+## Structure first, content on demand
+
+Establishing the Context Architecture and populating it are different acts,
+done at different times.
+
+`vatras:init` creates the [Agent Entry Point](/docs/context/agent-entry-point)
+and its adapters — the structure a repository needs before an agent can route
+through it at all. It does not create `docs/`, `VOCABULARY.md`, `IDEAS.md`, or
+write a description of what the project is, even though every one of those
+will eventually belong. None of that content is needed for the entry point to
+work, so producing it is not structure's job.
+
+Content is deferred instead to whichever operation first needs it — a
+decision that needs a home, a term that needs a canonical name, a thought
+worth keeping, a description someone finally wants written down. It is
+created together with the thing that justifies it, not reserved in advance.
+
+A section or a table row that points at something that doesn't exist yet
+isn't a placeholder. It's a cost paid on every operation for no benefit — so
+it gets added in the same step that creates the thing it points to, never
+before.
