@@ -45,9 +45,15 @@ adapter is created.
 
 ## AGENTS.md content
 
-Default to two things: one line saying what the file is (not a project
-description), and a "Project vocabulary" section pointing at `VOCABULARY.md`,
-stating it's read before every operation.
+Default to two things, no heading for either: one line saying what the file
+is (not a project description), and one line pointing at `VOCABULARY.md`,
+stating it's read before every operation. A heading for a single sentence is
+structure that isn't paying for itself yet — add one only once the section
+actually grows past one line.
+
+Reference files in backticks (`` `VOCABULARY.md` ``), never as a markdown
+link. Nothing renders `AGENTS.md` as clickable HTML, so a link is `()` and a
+repeated filename for no benefit over the filename alone.
 
 Add nothing else — no project description, no directory listing ("Where
 things live", "Repository layout", or any other name), no commands section,
@@ -65,8 +71,8 @@ it to taste.
 
 Add only what's structurally missing, appended, never injected at the top:
 
-- No "Project vocabulary" section → append one, and create `VOCABULARY.md`
-  if it doesn't exist.
+- No vocabulary pointer → append one line, no heading, and create
+  `VOCABULARY.md` if it doesn't exist.
 - No adapter for an agent in use → create it.
 
 No identity-labelling step. A file named `AGENTS.md` with real content in it
@@ -103,8 +109,8 @@ Before showing the draft, check it against every line:
 - [ ] `AGENTS.md` has no project description, no directory listing, no
       commands section, no conventions section, no authoritative-documents
       list — unless a specific reason earned one
-- [ ] `AGENTS.md` has a "Project vocabulary" section pointing at
-      `VOCABULARY.md`
+- [ ] `AGENTS.md` has a one-line pointer (no heading) to `VOCABULARY.md`,
+      stating it's read before every operation
 - [ ] `VOCABULARY.md` is exactly `# Vocabulary`
 - [ ] Every adapter is a pointer only — `CLAUDE.md` is exactly `@AGENTS.md`
 - [ ] Nothing outside `AGENTS.md`, its adapters, and `VOCABULARY.md` was
