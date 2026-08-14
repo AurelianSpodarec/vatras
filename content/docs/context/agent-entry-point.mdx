@@ -38,7 +38,10 @@ Codebase
   <Folder name="docs" defaultOpen />
 </Files>
 
-`AGENTS.md` provides the shared repository-level entry point. `CLAUDE.md` can direct Claude Code to follow it, keeping the repository's agent instructions consistent.
+`AGENTS.md` provides the shared repository-level entry point. `CLAUDE.md` is an
+Adapter: it contains exactly `@AGENTS.md`, nothing else. Claude Code reads
+`CLAUDE.md`, not `AGENTS.md`, and `@` is an import that loads the file — a
+markdown link would load nothing.
 
 The `/docs` directory is the starting point for the project's Context Architecture.
 
