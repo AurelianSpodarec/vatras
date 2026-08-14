@@ -1,7 +1,7 @@
 {
   "name": "vatras",
   "displayName": "Vatras",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "A systematic way of building software with AI agents: agent entry point, context architecture and project model.",
   "repository": "https://github.com/AurelianSpodarec/vatras",
   "license": "MIT",
