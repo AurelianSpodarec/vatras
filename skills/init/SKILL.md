@@ -19,9 +19,10 @@ Establish `AGENTS.md`, one adapter per agent, and `VOCABULARY.md`. Nothing more.
    detected.
 3. Check for anything that changes the `AGENTS.md` draft: an existing
    `README`, a naming collision, a stated binding rule.
-4. Draft `AGENTS.md`, the adapter(s), and `VOCABULARY.md`. Show the full
-   text, not a summary, and let the user edit before writing. No one to
-   confirm with → write what was found and say so.
+4. Draft `AGENTS.md`, the adapter(s), and `VOCABULARY.md`. Check the draft
+   against Verify below before showing it. Show the full text, not a
+   summary, and let the user edit before writing. No one to confirm with →
+   write what was found and say so.
 5. Write the files and report what was created.
 
 Never overwrite existing project knowledge — add to it, or ask.
@@ -78,3 +79,17 @@ Pointer only — copying real content into one creates two sources that drift.
 Binding content — a branching policy, a commit convention — goes in
 `AGENTS.md`, never an adapter, or every agent not reading that specific file
 misses it.
+
+## Verify
+
+Before showing the draft, check it against every line:
+
+- [ ] `AGENTS.md` has no project description, no directory listing, no
+      commands section, no conventions section, no authoritative-documents
+      list — unless a specific reason earned one
+- [ ] `AGENTS.md` has a "Project vocabulary" section pointing at
+      `VOCABULARY.md`
+- [ ] `VOCABULARY.md` is exactly `# Vocabulary`
+- [ ] Every adapter is a pointer only — `CLAUDE.md` is exactly `@AGENTS.md`
+- [ ] Nothing outside `AGENTS.md`, its adapters, and `VOCABULARY.md` was
+      created or modified
