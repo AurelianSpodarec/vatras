@@ -9,12 +9,12 @@ The agent entry point is the first place an AI agent looks when working in a rep
 
 The entry point gives the agent an initial mental model of the repository and directs it towards the project's deeper context.
 
-It should tell the agent:
-
-- where project knowledge lives
-- how the repository is organised
-- which documents are authoritative
-- where to find architecture, requirements, decisions, research and domain knowledge
+It should tell the agent what it can't get by looking: which locations hold
+authoritative knowledge and which are exploratory, a naming collision, a
+binding rule that isn't inferable from the repository itself. It should not
+restate what looking would already show — a directory listing is what `ls`
+gives for free, and a `README.md` is found the moment any agent starts
+exploring.
 
 It is not the project's entire context. It is the starting point from which the agent discovers that context.
 
