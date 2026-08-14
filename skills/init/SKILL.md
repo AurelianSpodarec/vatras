@@ -12,19 +12,21 @@ Establish the initial AI development surface for a repository.
 
 ## Process
 
-1. Check whether the Agent Entry Point, its adapters, and a Context
-   Architecture already exist. If all three are present, stop: report that
-   the repository is already established and skip the remaining steps. Do
-   not re-derive what already exists.
-2. Otherwise, inspect the repository.
+1. Check whether the Agent Entry Point and its adapters already exist. If
+   both are present, stop: report that the repository is already established
+   and skip the remaining steps. Do not re-derive what already exists.
+2. Otherwise, inspect the repository: its layout, its tooling, and what it
+   already says about itself.
 3. Detect which AI coding agents it is set up for, using the evidence below.
-4. Identify existing agent instruction files and existing documentation.
-5. Report what was detected and confirm it before writing. If there is nobody
-   to answer, proceed with what was detected and say so in the report.
-6. Create or update `AGENTS.md` as the canonical entry point.
-7. Create one adapter per detected agent.
-8. Establish the Context Architecture at `docs/`.
-9. Report the resulting structure.
+4. Work out what the project is, using the evidence below. Ask only if
+   inspection leaves it unresolved.
+5. Draft `AGENTS.md` and the adapters, and present the actual draft — not a
+   summary of what was detected — for confirmation before writing. If there
+   is nobody to answer, proceed with what was detected and say so in the
+   report.
+6. Write `AGENTS.md` as the canonical entry point.
+7. Write one adapter per detected agent.
+8. Report the resulting structure.
 
 Do not overwrite existing project knowledge at any step. Add to it, or ask.
 
@@ -51,13 +53,29 @@ repository already provides.
 If none are present, no agent is configured yet. Create `AGENTS.md` alone and
 add adapters when an agent appears.
 
+## Determining what the project is
+
+Infer it before asking, in this order: a `README`, a package manifest's
+description field (`package.json`, `Cargo.toml`, `pyproject.toml`, and
+similar), then the repository's own layout and naming.
+
+If none of that settles it, ask for one sentence. Don't guess, and don't
+leave the section blank — a wrong guess is harder to notice than a gap.
+
 ## Creates
 
 - `AGENTS.md` — the canonical entry point, always. States where project
   knowledge lives, how the repository is organised, and which documents are
   authoritative. It points to context; it does not contain it.
 - One adapter per detected agent. See below.
-- `docs/` — the root of the Context Architecture.
+
+Nothing else. `docs/`, `VOCABULARY.md`, `IDEAS.md`, and the rest of the
+Context Architecture are not created here. They get created later, by
+whichever operation first needs them, together with the content that
+justifies them — a decision, a term, a captured thought. Do not reserve their
+place in `AGENTS.md` ahead of that: a table row pointing at something that
+doesn't exist is a cost paid on every operation for no benefit. Add the row
+in the same step that creates the thing it points to.
 
 ## Adapters
 
@@ -70,6 +88,18 @@ different sets of instructions.
   A markdown link loads nothing.
 - **Agents that read `AGENTS.md` natively** — no adapter. Adding one is noise.
 - **Anything else** — the smallest pointer that agent supports.
+
+Content that is genuinely binding on every operation — a branching policy, a
+commit message convention — belongs directly in `AGENTS.md`, never in an
+adapter. An adapter that accumulates real content stops being a pointer, and
+every agent that isn't reading that specific adapter silently misses it.
+
+## Confirming before writing
+
+Confirmation shows the actual draft — the text `AGENTS.md` and each adapter
+will contain — not a summary of what was detected. A user correcting "Cursor,
+not Windsurf" is a cheaper conversation than one correcting prose after it's
+already been written. Let them edit before writing.
 
 ## Principles
 

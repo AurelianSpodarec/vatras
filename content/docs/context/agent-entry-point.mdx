@@ -35,7 +35,6 @@ Codebase
 <Files>
   <File name="AGENTS.md" />
   <File name="CLAUDE.md" />
-  <Folder name="docs" defaultOpen />
 </Files>
 
 `AGENTS.md` provides the shared repository-level entry point. `CLAUDE.md` is an
@@ -43,8 +42,9 @@ Adapter: it contains exactly `@AGENTS.md`, nothing else. Claude Code reads
 `CLAUDE.md`, not `AGENTS.md`, and `@` is an import that loads the file — a
 markdown link would load nothing.
 
-The `/docs` directory is the starting point for the project's Context Architecture.
-
-`vatras:init` establishes the structure. The subsequent Vatras workflow fills it with project knowledge.
+`vatras:init` creates nothing else. The Context Architecture — `docs/`,
+`VOCABULARY.md`, and everything else — is not scaffolded in advance. It comes
+into being later, one piece at a time, when the subsequent Vatras workflow
+first has something that needs recording.
 
 The agent entry point is the door into the project. [Context Architecture](/docs/context/context-architecture) is what lies beyond it.
