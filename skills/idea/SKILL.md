@@ -1,64 +1,35 @@
 ---
 name: idea
-description: Capture an idea in the project's inbox without acting on it.
+description: Create, find, retrieve, and append to ideas in the Idea Inbox.
 operation: Capture
 group: idea
 ---
 
 # Idea
 
-Record an idea in `IDEAS.md` and stop.
+Create, find, retrieve, and append to entries in the Idea Inbox.
 
-## Purpose
+## Definition
 
-Give a thought somewhere to go so it stops occupying attention. Capture is the
-whole operation. The idea is not evaluated, researched, planned or built.
+An idea is an entry in `IDEAS.md` with a unique, stable ID, a creation date,
+and content. The ID must remain unchanged and must not be reused.
 
-## Process
+## Operations
 
-1. Read `IDEAS.md`. If it does not exist, create it with the header below.
-2. Find the highest existing id and add one. Ids are four digits, never reused.
-3. Get today's date.
-4. Insert the new entry directly below the comment marker, above any existing
-   entries.
-5. Confirm what was captured in one line.
+The skill supports four operations. There is no fixed command syntax — decide
+which operation applies from the developer's intent.
 
-## Format
+### Create
 
-```md
-## 0012 — 2026-08-13
+When the developer expresses a new idea, create an entry in `IDEAS.md`,
+assign the next unused ID, preserve the supplied content, and return the ID.
 
-Flows might need an explicit trigger, not just an order.
-```
-
-The body is whatever the developer said, tidied only enough to be readable in
-six months. Do not expand it, structure it, or add reasoning they did not give.
-
-If they were terse, the entry is terse. An idea recorded as three words is a
-successful capture.
-
-## What this skill does not do
-
-- Does not assess whether the idea is good
-- Does not check it against existing project context
-- Does not propose next steps
-- Does not create tickets, plans or documents
-- Does not update the vocabulary, even if the idea names a new concept
-
-An idea that turns out to matter will come back through work. Acting on capture
-defeats the point: the file is only safe to write in because writing in it
-commits to nothing.
-
-## Reading the inbox
-
-Do not read `IDEAS.md` as context. It is not part of the Context Architecture,
-and nothing in it is decided. Read it only when the developer asks about their
-ideas.
-
-## New file header
+If `IDEAS.md` does not exist, create it with the header below. If it already
+exists, insert the new entry directly below the marker comment, above any
+existing entries — the inbox is newest first.
 
 ```md
-# Ideas
+# Idea Inbox
 
 An inbox. Nothing here has been decided, and nothing loads this file.
 
@@ -66,3 +37,60 @@ Newest first. Each entry has an id and the date it was captured.
 
 <!-- Add with vatras:idea. New entries go directly below this line. -->
 ```
+
+### Find
+
+When the developer asks whether an existing idea matches a thought or topic,
+search the Idea Inbox and return relevant existing ideas by ID. Find must not
+create or modify ideas.
+
+### Retrieve
+
+When the developer identifies an idea by ID, return its complete entry.
+Retrieve must not modify the Idea Inbox.
+
+### Append
+
+When the developer provides additional content for an existing idea, append
+it to that idea without replacing or rewriting existing content. The idea's
+ID and creation date must remain unchanged.
+
+## Format
+
+```md
+## 0023 — 2026-08-14 14:34:12
+
+We should generate documentation from project context.
+```
+
+The body is whatever the developer said, tidied only enough to be readable in
+six months. Do not expand it, structure it, or add reasoning they did not
+give.
+
+## Boundaries
+
+The skill manages the Idea Inbox only, and must not modify files other than
+`IDEAS.md`.
+
+It must not critique, investigate, probe, iterate, grill, plan, decide, or
+record judgement on an idea unless another capability is explicitly invoked.
+Other capabilities address ideas by type and ID:
+
+```
+vatras:critique idea 0023
+vatras:investigate idea 0023
+vatras:probe idea 0023
+vatras:iterate idea 0023
+vatras:grill idea 0023
+```
+
+An idea that turns out to matter comes back through work. Acting on capture
+defeats the point: the file is only safe to write in because writing in it
+commits to nothing.
+
+## Storage
+
+Ideas are stored in `IDEAS.md` at the repository root. Do not read it as
+context — it is not part of the Context Architecture, and nothing in it is
+decided. Read it only when the developer asks about their ideas, or when
+performing Find or Retrieve.
