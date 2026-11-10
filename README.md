@@ -1,5 +1,9 @@
 # Vatras
 
+No time to finish this project, unfortunately.
+
+---
+
 I can build software with AI. I've done it.
 
 But the process has been improvised — different prompts, different skills,
